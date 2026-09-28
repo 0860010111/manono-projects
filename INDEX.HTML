@@ -2,705 +2,2656 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, user-scalable=yes">
-  <title>Manono Projects | Mihle Manono</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SA Youth Learning — Free Courses for Young South Africans</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-  <script src="https://cdn.jsdelivr.net/npm/qrcodejs@1.0.0/qrcode.min.js"></script>
   <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      -webkit-tap-highlight-color: transparent;
-    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
 
     body {
       font-family: 'Inter', sans-serif;
-      background: #0a0a0a;
-      color: #e5e5e5;
+      background-color: #f9fbfd;
+      color: #1e2b3a;
       line-height: 1.5;
       scroll-behavior: smooth;
-      position: relative;
-      overflow-x: hidden;
-      width: 100%;
-      min-height: 100vh;
     }
 
-    /* Geographic Background */
-    .geo-background {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: linear-gradient(135deg, #0a0a0a 0%, #1a1a0a 100%);
-      z-index: 0;
-    }
-
-    .geo-background::before {
-      content: "";
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 1200" opacity="0.1"><path fill="none" stroke="%23f5b81b" stroke-width="1.2" d="M0 200 L200 150 L350 220 L500 180 L650 240 L800 190 L950 210 L1100 170 L1200 200 M0 350 L180 380 L290 340 L480 400 L620 360 L800 390 L950 410 L1100 370 L1200 390 M0 520 L220 490 L370 540 L530 510 L680 560 L800 520 L980 550 L1150 510 L1200 520 M0 700 L250 680 L400 720 L550 690 L700 740 L850 700 L1050 730 L1200 710"/><circle cx="340" cy="280" r="8" fill="%23f5b81b" opacity="0.2"/><circle cx="620" cy="420" r="12" fill="%23f5b81b" opacity="0.15"/></svg>');
-      background-repeat: repeat;
-      background-size: 350px;
-      pointer-events: none;
-    }
-
-    #robotCanvas {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      z-index: 1;
-      pointer-events: none;
+    :root {
+      --primary: #1e4a6f;
+      --primary-light: #2b6a9e;
+      --accent: #e8b43a;
+      --accent-soft: #f7e6c4;
+      --neutral-100: #ffffff;
+      --neutral-200: #eef2f6;
+      --neutral-300: #d9e2ec;
+      --neutral-600: #4a5c6b;
+      --neutral-900: #0f1a24;
+      --success: #1e7b4c;
+      --danger: #b13e3e;
+      --shadow-sm: 0 8px 20px rgba(0, 20, 30, 0.06);
+      --shadow-md: 0 12px 28px rgba(0, 20, 30, 0.08);
+      --radius-card: 20px;
+      --radius-btn: 40px;
+      --transition: all 0.2s ease;
     }
 
     .container {
       max-width: 1280px;
       margin: 0 auto;
-      padding: 0 1.5rem;
-      position: relative;
-      z-index: 2;
-      width: 100%;
+      padding: 0 24px;
     }
 
-    /* Responsive Header */
-    header {
-      background: rgba(10, 10, 10, 0.92);
-      backdrop-filter: blur(12px);
-      position: sticky;
-      top: 0;
-      z-index: 100;
-      border-bottom: 1px solid rgba(245, 184, 27, 0.3);
-      width: 100%;
-    }
-
-    nav {
+    /* HEADER */
+    .navbar {
       display: flex;
-      justify-content: space-between;
       align-items: center;
+      justify-content: space-between;
       flex-wrap: wrap;
-      padding: 1rem 0;
-      gap: 1rem;
+      gap: 16px;
+      padding: 16px 0;
     }
 
     .logo {
-      font-size: 1.4rem;
-      font-weight: 800;
-      background: linear-gradient(135deg, #f5b81b, #d4940a);
-      background-clip: text;
-      -webkit-background-clip: text;
-      color: transparent;
+      font-size: 1.7rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      color: var(--primary);
       display: flex;
       align-items: center;
       gap: 8px;
+      cursor: pointer;
+      user-select: none;
     }
 
-    .logo i { color: #f5b81b; font-size: 1.4rem; }
-    .logo span { font-size: 1.2rem; }
+    .logo i { color: var(--accent); font-size: 2rem; }
 
     .nav-links {
       display: flex;
-      gap: 1.2rem;
-      list-style: none;
-      align-items: center;
       flex-wrap: wrap;
+      align-items: center;
+      gap: 8px 20px;
+      list-style: none;
+      font-weight: 500;
+      color: var(--neutral-600);
     }
 
     .nav-links a {
       text-decoration: none;
-      font-weight: 500;
-      color: #e0e0e0;
-      transition: 0.2s;
-      font-size: 0.9rem;
+      color: inherit;
+      transition: var(--transition);
+      font-size: 0.95rem;
       white-space: nowrap;
     }
 
-    .nav-links a:hover { color: #f5b81b; border-bottom: 2px solid #f5b81b; padding-bottom: 4px; }
+    .nav-links a:hover { color: var(--primary); }
 
-    .admin-btn {
-      background: rgba(245, 184, 27, 0.15);
-      padding: 0.3rem 0.9rem;
-      border-radius: 40px;
-      border: 1px solid rgba(245, 184, 27, 0.4);
-      cursor: pointer;
-      font-size: 0.85rem;
-    }
+    .nav-actions { display: flex; align-items: center; gap: 12px; }
 
     .btn {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      background: #f5b81b;
-      color: #0a0a0a;
-      padding: 0.6rem 1.2rem;
-      border-radius: 40px;
-      text-decoration: none;
+      display: inline-block;
       font-weight: 600;
-      transition: 0.2s;
+      border-radius: var(--radius-btn);
+      padding: 10px 22px;
+      text-decoration: none;
+      font-size: 0.95rem;
+      transition: var(--transition);
       border: none;
       cursor: pointer;
-      font-size: 0.9rem;
+      white-space: nowrap;
+      font-family: 'Inter', sans-serif;
     }
 
     .btn-outline {
       background: transparent;
-      border: 1.5px solid #f5b81b;
-      color: #f5b81b;
+      border: 1.5px solid var(--primary);
+      color: var(--primary);
     }
 
-    /* Hero Section - Responsive */
+    .btn-outline:hover { background: var(--primary); color: white; }
+
+    .btn-primary {
+      background: var(--primary);
+      color: white;
+      box-shadow: 0 6px 14px rgba(30, 74, 111, 0.25);
+    }
+
+    .btn-primary:hover {
+      background: var(--primary-light);
+      transform: translateY(-2px);
+      box-shadow: 0 10px 20px rgba(30, 74, 111, 0.3);
+    }
+
+    .btn-accent {
+      background: var(--accent);
+      color: #1e2b3a;
+      box-shadow: 0 6px 14px rgba(232, 180, 58, 0.3);
+    }
+
+    .btn-accent:hover { background: #d9a52e; transform: translateY(-2px); }
+
+    .btn-large { padding: 16px 38px; font-size: 1.1rem; }
+
+    .btn-sm { padding: 8px 16px; font-size: 0.85rem; }
+
+    /* HERO */
     .hero {
-      display: flex;
-      flex-wrap: wrap;
-      align-items: center;
-      justify-content: space-between;
-      gap: 2rem;
-      padding: 2rem 0 1.5rem;
+      padding: 60px 0 40px;
+      background: linear-gradient(135deg, #f1f7fc 0%, #ffffff 80%);
+      border-bottom: 1px solid var(--neutral-300);
     }
 
-    .hero-content { flex: 1.2; min-width: 250px; }
-    .badge {
-      display: inline-flex;
-      gap: 8px;
-      background: rgba(245, 184, 27, 0.15);
-      padding: 0.3rem 1rem;
+    .hero-grid { display: flex; align-items: center; gap: 50px; }
+
+    .hero-content { flex: 1 1 500px; }
+
+    .hero-content h1 {
+      font-size: 3.2rem;
+      font-weight: 700;
+      line-height: 1.2;
+      letter-spacing: -0.02em;
+      color: var(--primary);
+      margin-bottom: 18px;
+    }
+
+    .hero-content p {
+      font-size: 1.2rem;
+      color: var(--neutral-600);
+      margin-bottom: 30px;
+      max-width: 600px;
+    }
+
+    .hero-actions { display: flex; flex-wrap: wrap; gap: 16px; align-items: center; }
+
+    .hero-image {
+      flex: 1 1 360px;
+      background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 400"><rect width="600" height="400" fill="%23d9e2ec" rx="40"/><circle cx="300" cy="160" r="70" fill="%231e4a6f" opacity="0.9"/><circle cx="200" cy="280" r="40" fill="%232b6a9e" opacity="0.8"/><circle cx="400" cy="290" r="55" fill="%23e8b43a" opacity="0.7"/><rect x="150" y="320" width="300" height="30" rx="15" fill="%231e4a6f" opacity="0.5"/></svg>');
+      background-size: contain;
+      background-repeat: no-repeat;
+      background-position: center;
+      min-height: 260px;
       border-radius: 40px;
-      margin-bottom: 1.2rem;
-      color: #f5b81b;
-      font-size: 0.8rem;
     }
-    .hero-content h1 { font-size: 2.2rem; font-weight: 800; margin-bottom: 0.8rem; color: #fff; line-height: 1.2; }
-    .hero-content p { font-size: 1rem; color: #b0b0b0; margin-bottom: 1.5rem; }
-    .hero-stats { display: flex; gap: 1.5rem; margin-top: 0.5rem; flex-wrap: wrap; }
-    .stat span { font-size: 1.4rem; font-weight: 800; color: #f5b81b; display: block; }
-    .hero-map-icon {
-      flex: 0.9;
-      background: rgba(0, 0, 0, 0.5);
-      backdrop-filter: blur(4px);
-      border-radius: 1.5rem;
-      padding: 1.2rem;
-      text-align: center;
-      border: 1px solid rgba(245, 184, 27, 0.3);
-      min-width: 200px;
-    }
-    .compass-icon { font-size: 3rem; color: #f5b81b; }
+
+    /* SECTIONS */
+    section { padding: 60px 0; }
 
     .section-title {
-      font-size: 1.8rem;
+      font-size: 2.2rem;
       font-weight: 700;
-      margin: 2rem 0 0.5rem;
+      letter-spacing: -0.02em;
+      color: var(--primary);
+      margin-bottom: 16px;
+      text-align: center;
+    }
+
+    .section-sub {
+      text-align: center;
+      color: var(--neutral-600);
+      max-width: 720px;
+      margin: 0 auto 48px;
+      font-size: 1.1rem;
+    }
+
+    /* COURSE CARDS */
+    .course-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 28px;
+      margin-top: 24px;
+    }
+
+    .course-card {
+      background: var(--neutral-100);
+      border-radius: var(--radius-card);
+      overflow: hidden;
+      box-shadow: var(--shadow-sm);
+      transition: var(--transition);
+      border: 1px solid var(--neutral-300);
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+    }
+
+    .course-card:hover {
+      transform: translateY(-6px);
+      box-shadow: var(--shadow-md);
+      border-color: var(--primary-light);
+    }
+
+    .course-image {
+      height: 180px;
+      background-size: cover;
+      background-position: center;
+      position: relative;
+    }
+
+    .course-image::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 60px;
+      background: linear-gradient(to top, rgba(0,0,0,0.4), transparent);
+    }
+
+    .course-image i {
+      position: absolute;
+      bottom: 16px;
+      left: 20px;
+      font-size: 2rem;
+      color: white;
+      z-index: 2;
+      text-shadow: 0 2px 8px rgba(0,0,0,0.3);
+    }
+
+    .course-content {
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+    }
+
+    .course-card h3 {
+      font-size: 1.35rem;
+      font-weight: 700;
+      color: var(--neutral-900);
+      margin-bottom: 10px;
+    }
+
+    .course-card .meta {
+      font-size: 0.85rem;
+      color: var(--primary-light);
+      font-weight: 600;
+      margin-bottom: 16px;
+      letter-spacing: 0.3px;
+      text-transform: uppercase;
+    }
+
+    .course-card p {
+      color: var(--neutral-600);
+      font-size: 0.95rem;
+      margin-bottom: 22px;
+      flex: 1;
+    }
+
+    .course-tag {
+      background: var(--neutral-200);
+      border-radius: 30px;
+      padding: 6px 14px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: var(--primary);
+      align-self: flex-start;
+      margin-bottom: 16px;
+    }
+
+    .card-link {
+      text-decoration: none;
+      font-weight: 600;
+      color: var(--primary);
+      font-size: 0.95rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      transition: var(--transition);
+      margin-top: auto;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 0;
+      font-family: 'Inter', sans-serif;
+    }
+
+    .card-link i { transition: var(--transition); }
+    .card-link:hover i { transform: translateX(6px); }
+
+    /* HOW IT WORKS */
+    .steps-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+      gap: 32px;
+      margin: 40px 0 20px;
+    }
+
+    .step-item {
+      text-align: center;
+      background: var(--neutral-100);
+      padding: 32px 20px;
+      border-radius: 28px;
+      box-shadow: var(--shadow-sm);
+      border: 1px solid var(--neutral-300);
+      transition: var(--transition);
+    }
+
+    .step-item:hover { box-shadow: var(--shadow-md); transform: translateY(-4px); }
+
+    .step-number {
+      width: 60px;
+      height: 60px;
+      background: var(--primary);
+      color: white;
+      font-weight: 700;
+      font-size: 1.5rem;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 20px;
+      box-shadow: 0 6px 14px rgba(30, 74, 111, 0.25);
+    }
+
+    .step-item h4 { font-size: 1.2rem; margin-bottom: 12px; color: var(--neutral-900); }
+    .step-item p { color: var(--neutral-600); font-size: 0.95rem; }
+
+    /* ABOUT */
+    .about-trust {
+      background: var(--neutral-200);
+      border-radius: 48px;
+      padding: 48px 40px;
+      margin: 40px 0;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 40px;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .about-text { flex: 2 1 380px; }
+
+    .about-text h2 { font-size: 2rem; font-weight: 700; color: var(--primary); margin-bottom: 16px; }
+    .about-text p { color: var(--neutral-600); font-size: 1.05rem; margin-bottom: 20px; }
+
+    .about-stats { display: flex; flex-wrap: wrap; gap: 32px; margin-top: 24px; }
+
+    .stat-item { display: flex; flex-direction: column; }
+
+    .stat-number { font-size: 2rem; font-weight: 700; color: var(--primary); }
+    .stat-label { font-size: 0.9rem; color: var(--neutral-600); }
+
+    .about-image {
+      flex: 1 1 240px;
+      background: linear-gradient(145deg, #1e4a6f, #2b6a9e);
+      height: 200px;
+      border-radius: 32px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 3.5rem;
+      box-shadow: var(--shadow-md);
+    }
+
+    /* REGISTER & PAYMENT */
+    .register-section {
+      background: linear-gradient(135deg, #f1f7fc 0%, #ffffff 80%);
+      padding: 80px 0;
+    }
+
+    .register-grid { display: flex; flex-wrap: wrap; gap: 40px; align-items: flex-start; }
+
+    .register-info { flex: 1 1 400px; }
+
+    .register-info h2 { font-size: 2.2rem; font-weight: 700; color: var(--primary); margin-bottom: 20px; }
+    .register-info p { color: var(--neutral-600); font-size: 1.05rem; margin-bottom: 30px; }
+
+    .bank-details {
+      background: white;
+      border: 2px solid var(--primary);
+      border-radius: 20px;
+      padding: 28px;
+      box-shadow: var(--shadow-sm);
+      margin-bottom: 24px;
+    }
+
+    .bank-details h4 {
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: var(--primary);
+      margin-bottom: 16px;
       display: flex;
       align-items: center;
       gap: 10px;
-      color: #fff;
-      flex-wrap: wrap;
     }
-    .section-title i { color: #f5b81b; font-size: 1.6rem; }
-    .title-divider { height: 3px; width: 60px; background: linear-gradient(90deg, #f5b81b, #ffd966); margin: 0.5rem 0 1.5rem; border-radius: 4px; }
 
-    /* Projects Grid - Fully Responsive */
-    .projects-grid {
+    .bank-details h4 i { color: var(--accent); }
+
+    .bank-row {
+      display: flex;
+      justify-content: space-between;
+      padding: 12px 0;
+      border-bottom: 1px solid var(--neutral-200);
+      font-size: 0.95rem;
+    }
+
+    .bank-row:last-child { border-bottom: none; }
+
+    .bank-label { color: var(--neutral-600); font-weight: 500; }
+    .bank-value { font-weight: 700; color: var(--neutral-900); }
+
+    .bank-note {
+      background: var(--accent-soft);
+      border-radius: 12px;
+      padding: 14px 18px;
+      font-size: 0.9rem;
+      color: #6b4f1a;
+      display: flex;
+      gap: 12px;
+      align-items: flex-start;
+      margin-top: 16px;
+    }
+
+    .bank-note i { color: var(--accent); font-size: 1.2rem; margin-top: 2px; }
+
+    .register-form {
+      flex: 1 1 400px;
+      background: white;
+      border-radius: 32px;
+      padding: 40px;
+      box-shadow: var(--shadow-md);
+      border: 1px solid var(--neutral-300);
+    }
+
+    .register-form h3 { font-size: 1.6rem; font-weight: 700; color: var(--neutral-900); margin-bottom: 8px; }
+    .register-form > p { color: var(--neutral-600); margin-bottom: 24px; font-size: 0.95rem; }
+
+    .form-group { margin-bottom: 20px; }
+
+    .form-group label {
+      display: block;
+      font-weight: 600;
+      font-size: 0.9rem;
+      color: var(--neutral-900);
+      margin-bottom: 8px;
+    }
+
+    .form-group input, .form-group select, .form-group textarea {
+      width: 100%;
+      padding: 14px 18px;
+      border-radius: 12px;
+      border: 1.5px solid var(--neutral-300);
+      font-family: 'Inter', sans-serif;
+      font-size: 1rem;
+      transition: var(--transition);
+      background: var(--neutral-100);
+    }
+
+    .form-group input:focus, .form-group select:focus, .form-group textarea:focus {
+      outline: none;
+      border-color: var(--primary);
+      background: white;
+      box-shadow: 0 0 0 4px rgba(30, 74, 111, 0.1);
+    }
+
+    .form-group input::placeholder, .form-group textarea::placeholder { color: #a0b3c4; }
+
+    .form-group textarea { resize: vertical; min-height: 100px; }
+
+    /* CTA BANNER */
+    .cta-banner {
+      background: var(--primary);
+      border-radius: 48px;
+      padding: 56px 48px;
+      text-align: center;
+      color: white;
+      margin: 40px 0;
+      box-shadow: var(--shadow-md);
+    }
+
+    .cta-banner h2 { font-size: 2.2rem; font-weight: 700; margin-bottom: 16px; }
+    .cta-banner p { font-size: 1.1rem; opacity: 0.9; max-width: 600px; margin: 0 auto 32px; }
+
+    /* FOOTER */
+    .footer { background: var(--neutral-900); color: #b0c4d9; padding: 48px 0 24px; margin-top: 40px; }
+
+    .footer-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-      gap: 1.5rem;
-      margin: 1.5rem 0;
+      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+      gap: 40px;
+      margin-bottom: 40px;
     }
-    .project-card {
-      background: rgba(20, 20, 20, 0.95);
-      border-radius: 1.2rem;
-      border: 1px solid rgba(245, 184, 27, 0.25);
-      transition: 0.3s;
-      overflow: hidden;
-    }
-    .project-card:hover { transform: translateY(-4px); border-color: #f5b81b; }
-    .card-header { padding: 1rem 1.2rem 0.2rem; display: flex; justify-content: space-between; flex-wrap: wrap; gap: 0.5rem; }
-    .project-icon-bg { background: rgba(245, 184, 27, 0.15); width: 44px; height: 44px; display: flex; align-items: center; justify-content: center; border-radius: 30px; color: #f5b81b; font-size: 1.4rem; }
-    .project-category { font-size: 0.65rem; font-weight: 700; background: rgba(245, 184, 27, 0.2); padding: 0.2rem 0.7rem; border-radius: 30px; color: #f5b81b; align-self: center; }
-    .project-info { padding: 0 1.2rem 1.2rem; }
-    .project-info h3 { font-size: 1.2rem; margin: 0.5rem 0; color: #fff; }
-    .project-info p { color: #b0b0b0; font-size: 0.85rem; margin-bottom: 0.8rem; line-height: 1.4; }
-    .project-link { font-weight: 600; color: #f5b81b; text-decoration: none; display: inline-flex; align-items: center; gap: 5px; font-size: 0.85rem; }
 
-    /* Profile Card - Responsive */
-    .profile-card {
-      background: rgba(15, 15, 15, 0.94);
-      backdrop-filter: blur(4px);
-      border-radius: 1.5rem;
-      margin: 1.5rem 0;
-      padding: 1.5rem;
-      border: 1px solid rgba(245, 184, 27, 0.25);
-    }
-    .split-about { display: flex; flex-wrap: wrap; gap: 1.5rem; }
-    .about-details { flex: 1.5; min-width: 200px; }
-    .contact-info-card { flex: 1; min-width: 240px; }
-    .contact-methods { list-style: none; margin: 1rem 0; }
-    .contact-methods li { display: flex; align-items: center; gap: 10px; margin-bottom: 0.8rem; flex-wrap: wrap; }
-    .contact-link {
-      text-decoration: none;
-      color: #f5b81b;
-      background: rgba(245, 184, 27, 0.1);
-      padding: 0.25rem 0.8rem;
-      border-radius: 40px;
+    .footer h4 { color: white; font-size: 1rem; font-weight: 600; margin-bottom: 20px; letter-spacing: 0.5px; }
+    .footer ul { list-style: none; }
+    .footer li { margin-bottom: 12px; }
+    .footer a { color: #b0c4d9; text-decoration: none; transition: var(--transition); font-size: 0.9rem; }
+    .footer a:hover { color: white; }
+
+    .footer-bottom {
+      border-top: 1px solid #1f3345;
+      padding-top: 24px;
+      text-align: center;
       font-size: 0.85rem;
-      word-break: break-all;
+      color: #7f96ab;
     }
 
-    /* Chat Widget - Fully Responsive */
-    .chat-widget { position: fixed; bottom: 1rem; right: 1rem; z-index: 200; }
-    .chat-toggle {
-      width: 55px; height: 55px; background: #f5b81b; border-radius: 50%;
-      display: flex; align-items: center; justify-content: center;
-      cursor: pointer; box-shadow: 0 4px 15px rgba(245, 184, 27, 0.4);
-    }
-    .chat-toggle i { font-size: 1.6rem; color: #0a0a0a; }
-    .chat-box {
-      position: absolute; bottom: 70px; right: 0; width: calc(100vw - 2rem);
-      max-width: 380px; min-width: 280px;
-      background: rgba(20, 20, 20, 0.98); backdrop-filter: blur(12px);
-      border-radius: 1.2rem; border: 1px solid rgba(245, 184, 27, 0.4);
-      transform: scale(0); transform-origin: bottom right; opacity: 0; transition: 0.3s;
-      pointer-events: none;
-    }
-    .chat-box.open { transform: scale(1); opacity: 1; pointer-events: all; }
-    .chat-header { background: linear-gradient(135deg, #f5b81b, #d4940a); padding: 0.8rem; display: flex; align-items: center; gap: 8px; color: #0a0a0a; border-radius: 1.2rem 1.2rem 0 0; }
-    .chat-header i { font-size: 1.2rem; }
-    .chat-header h4 { font-size: 0.9rem; }
-    .chat-messages { height: 280px; overflow-y: auto; padding: 0.8rem; display: flex; flex-direction: column; gap: 8px; }
-    .message { max-width: 85%; padding: 0.5rem 0.9rem; border-radius: 1rem; font-size: 0.8rem; word-break: break-word; }
-    .message.user { background: #f5b81b; color: #0a0a0a; align-self: flex-end; }
-    .message.bot { background: rgba(245, 184, 27, 0.15); color: #e0e0e0; align-self: flex-start; border: 1px solid rgba(245, 184, 27, 0.3); }
-    .chat-input-area { display: flex; padding: 0.8rem; border-top: 1px solid rgba(245, 184, 27, 0.2); gap: 8px; }
-    .chat-input-area input { flex: 1; background: #0a0a0a; border: 1px solid rgba(245, 184, 27, 0.3); border-radius: 40px; padding: 0.5rem 0.8rem; color: white; font-size: 0.85rem; }
-    .chat-input-area button { background: #f5b81b; border: none; border-radius: 40px; padding: 0.5rem 1rem; cursor: pointer; font-weight: 600; font-size: 0.8rem; }
-    .quick-actions { display: flex; gap: 0.5rem; padding: 0.5rem 0.8rem; flex-wrap: wrap; border-top: 1px solid rgba(245,184,27,0.2); }
-    .quick-btn { background: rgba(245, 184, 27, 0.1); border: 1px solid rgba(245, 184, 27, 0.3); padding: 0.2rem 0.6rem; border-radius: 40px; font-size: 0.65rem; cursor: pointer; color: #f5b81b; }
-
-    /* Modals - Responsive */
-    .modal {
+    /* MODAL */
+    .modal-overlay {
       display: none;
       position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: rgba(0, 0, 0, 0.95);
+      inset: 0;
+      background: rgba(15, 26, 36, 0.75);
       z-index: 1000;
-      justify-content: center;
-      align-items: center;
-      padding: 1rem;
-    }
-    .modal-content {
-      background: #1a1a1a;
-      max-width: 500px;
-      width: 100%;
-      border-radius: 1.2rem;
-      padding: 1.5rem;
-      border: 1px solid rgba(245, 184, 27, 0.3);
-      max-height: 90vh;
       overflow-y: auto;
+      padding: 40px 20px;
+      backdrop-filter: blur(4px);
     }
-    .modal-content input, .modal-content textarea {
-      width: 100%;
-      padding: 0.7rem;
-      margin: 0.5rem 0;
-      border: 1px solid #333;
-      border-radius: 10px;
-      background: #0a0a0a;
-      color: #fff;
+
+    .modal-overlay.active { display: block; }
+
+    .modal {
+      background: white;
+      border-radius: 32px;
+      max-width: 950px;
+      margin: 0 auto;
+      box-shadow: 0 24px 60px rgba(0, 0, 0, 0.3);
+      overflow: hidden;
+      animation: fadeUp 0.3s ease;
+    }
+
+    .modal-header {
+      background: var(--primary);
+      color: white;
+      padding: 28px 36px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .modal-header h2 { font-size: 1.6rem; font-weight: 700; }
+
+    .modal-close {
+      background: rgba(255,255,255,0.15);
+      border: none;
+      color: white;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      font-size: 1.2rem;
+      cursor: pointer;
+      transition: var(--transition);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .modal-close:hover { background: rgba(255,255,255,0.3); }
+
+    .modal-body { padding: 36px; }
+
+    .modal-tabs {
+      display: flex;
+      gap: 8px;
+      border-bottom: 2px solid var(--neutral-200);
+      margin-bottom: 28px;
+      flex-wrap: wrap;
+    }
+
+    .modal-tab {
+      background: none;
+      border: none;
+      padding: 12px 20px;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: var(--neutral-600);
+      cursor: pointer;
+      border-bottom: 3px solid transparent;
+      margin-bottom: -2px;
+      transition: var(--transition);
+    }
+
+    .modal-tab:hover { color: var(--primary); }
+    .modal-tab.active { color: var(--primary); border-bottom-color: var(--primary); }
+
+    .tab-content { display: none; }
+    .tab-content.active { display: block; animation: fadeUp 0.3s ease; }
+
+    /* Assignment cards */
+    .assignment-card {
+      background: var(--neutral-200);
+      border-radius: 16px;
+      padding: 24px;
+      margin-bottom: 20px;
+      border-left: 5px solid var(--primary);
+    }
+
+    .assignment-card h4 {
+      font-size: 1.1rem;
+      margin-bottom: 8px;
+      color: var(--neutral-900);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .assignment-card h4 .badge {
+      background: var(--primary);
+      color: white;
+      font-size: 0.7rem;
+      padding: 3px 10px;
+      border-radius: 20px;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+    }
+
+    .assignment-card > p {
+      color: var(--neutral-600);
+      font-size: 0.92rem;
+      margin-bottom: 16px;
+    }
+
+    .qa-block {
+      background: white;
+      border-radius: 12px;
+      padding: 16px 20px;
+      margin-bottom: 12px;
+      border: 1px solid var(--neutral-300);
+    }
+
+    .qa-question {
+      font-weight: 600;
+      color: var(--neutral-900);
+      margin-bottom: 10px;
+      font-size: 0.95rem;
+      display: flex;
+      gap: 8px;
+    }
+
+    .qa-question .q-mark { color: var(--primary); font-weight: 700; flex-shrink: 0; }
+
+    .qa-answer {
+      color: var(--neutral-600);
       font-size: 0.9rem;
-    }
-    .close-modal { float: right; font-size: 1.3rem; cursor: pointer; color: #f5b81b; }
-    #whatsappQR { display: flex; justify-content: center; margin: 1rem 0; padding: 0.8rem; background: white; border-radius: 1rem; }
-    .admin-status { background: rgba(245, 184, 27, 0.2); padding: 0.5rem; border-radius: 40px; font-size: 0.75rem; margin-top: 0.8rem; text-align: center; }
-    .api-instructions { text-align: left; background: #0f0f0f; padding: 0.8rem; border-radius: 0.8rem; margin-top: 0.8rem; font-size: 0.75rem; }
-    .project-item { display: flex; justify-content: space-between; align-items: center; padding: 0.6rem; border-bottom: 1px solid #2a2a2a; flex-wrap: wrap; gap: 0.5rem; }
-    .delete-project { background: #c0392b; border: none; padding: 0.2rem 0.6rem; border-radius: 20px; cursor: pointer; color: white; font-size: 0.7rem; }
-    .empty-state { text-align: center; padding: 2rem; color: #f5b81b; }
-    footer { text-align: center; padding: 1.5rem 0; border-top: 1px solid rgba(245, 184, 27, 0.2); font-size: 0.7rem; color: #888; }
-
-    /* Mobile Optimizations */
-    @media (max-width: 768px) {
-      .container { padding: 0 1rem; }
-      .hero-content h1 { font-size: 1.8rem; }
-      .hero-stats { justify-content: center; text-align: center; }
-      .hero { text-align: center; flex-direction: column-reverse; }
-      .badge { margin-left: auto; margin-right: auto; }
-      .section-title { justify-content: center; text-align: center; }
-      .title-divider { margin-left: auto; margin-right: auto; }
-      nav { flex-direction: column; text-align: center; }
-      .nav-links { justify-content: center; }
-      .projects-grid { grid-template-columns: 1fr; gap: 1rem; }
-      .profile-card { padding: 1rem; }
-      .split-about { flex-direction: column; }
-      .chat-box { right: 0; bottom: 70px; }
+      display: flex;
+      gap: 8px;
+      padding-top: 8px;
+      border-top: 1px dashed var(--neutral-300);
     }
 
-    @media (max-width: 480px) {
-      .hero-content h1 { font-size: 1.5rem; }
-      .stat span { font-size: 1.2rem; }
-      .btn { padding: 0.5rem 1rem; font-size: 0.8rem; }
-      .project-info h3 { font-size: 1rem; }
+    .qa-answer .a-mark { color: var(--success); font-weight: 700; flex-shrink: 0; }
+
+    .lesson-item {
+      background: var(--neutral-200);
+      border-radius: 16px;
+      padding: 20px 24px;
+      margin-bottom: 16px;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      transition: var(--transition);
+      flex-wrap: wrap;
     }
+
+    .lesson-item:hover { background: #e4ecf4; }
+
+    .lesson-item .lesson-num {
+      width: 44px;
+      height: 44px;
+      border-radius: 12px;
+      background: var(--primary);
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      flex-shrink: 0;
+    }
+
+    .lesson-item h4 { font-size: 1.05rem; margin-bottom: 4px; color: var(--neutral-900); }
+    .lesson-item p { font-size: 0.88rem; color: var(--neutral-600); }
+
+    .lesson-item .lesson-action {
+      margin-left: auto;
+      flex-shrink: 0;
+      background: var(--primary);
+      color: white;
+      border: none;
+      padding: 8px 18px;
+      border-radius: 30px;
+      font-weight: 600;
+      font-size: 0.85rem;
+      cursor: pointer;
+      transition: var(--transition);
+      font-family: 'Inter', sans-serif;
+    }
+
+    .lesson-item .lesson-action:hover { background: var(--primary-light); }
+
+    .pdf-badge {
+      background: var(--danger);
+      color: white;
+      font-size: 0.65rem;
+      padding: 2px 8px;
+      border-radius: 10px;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      margin-left: 8px;
+      vertical-align: middle;
+    }
+
+    /* Facilitator request */
+    .facilitator-form {
+      background: var(--neutral-200);
+      border-radius: 20px;
+      padding: 32px;
+    }
+
+    .facilitator-form h3 { font-size: 1.3rem; margin-bottom: 8px; color: var(--neutral-900); }
+    .facilitator-form > p { color: var(--neutral-600); font-size: 0.95rem; margin-bottom: 24px; }
+
+    .facilitator-success {
+      background: #e6f4ec;
+      border: 2px solid var(--success);
+      border-radius: 16px;
+      padding: 24px;
+      text-align: center;
+      margin-top: 20px;
+      display: none;
+    }
+
+    .facilitator-success h4 { color: var(--success); margin-bottom: 8px; font-size: 1.2rem; }
+    .facilitator-success p { color: var(--neutral-600); font-size: 0.95rem; }
+
+    /* Quiz */
+    .quiz-question {
+      background: var(--neutral-200);
+      border-radius: 16px;
+      padding: 24px;
+      margin-bottom: 20px;
+    }
+
+    .quiz-question h4 {
+      font-size: 1.05rem;
+      margin-bottom: 16px;
+      color: var(--neutral-900);
+    }
+
+    .quiz-option {
+      display: block;
+      padding: 12px 16px;
+      margin-bottom: 8px;
+      border-radius: 10px;
+      background: white;
+      border: 1.5px solid var(--neutral-300);
+      cursor: pointer;
+      transition: var(--transition);
+      font-size: 0.95rem;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .quiz-option:hover { border-color: var(--primary-light); background: #f0f7ff; }
+
+    .quiz-option input { accent-color: var(--primary); width: 18px; height: 18px; cursor: pointer; }
+
+    .quiz-option.selected { border-color: var(--primary); background: #e8f2fb; }
+
+    .quiz-result {
+      padding: 24px;
+      border-radius: 16px;
+      text-align: center;
+      margin-top: 20px;
+      display: none;
+    }
+
+    .quiz-result.pass { background: #e6f4ec; border: 2px solid var(--success); display: block; }
+    .quiz-result.fail { background: #f9e6e6; border: 2px solid var(--danger); display: block; }
+
+    .quiz-result h3 { margin-bottom: 10px; font-size: 1.3rem; }
+    .quiz-result.pass h3 { color: var(--success); }
+    .quiz-result.fail h3 { color: var(--danger); }
+    .quiz-result p { color: var(--neutral-600); margin-bottom: 16px; }
+
+    /* Certificate */
+    .certificate-preview {
+      background: linear-gradient(135deg, #fffdf5 0%, #ffffff 100%);
+      border: 3px solid var(--accent);
+      border-radius: 24px;
+      padding: 48px 40px;
+      text-align: center;
+      box-shadow: var(--shadow-md);
+    }
+
+    .certificate-preview h2 {
+      font-size: 2rem;
+      color: var(--primary);
+      margin-bottom: 8px;
+      letter-spacing: 0.5px;
+    }
+
+    .certificate-preview .cert-sub {
+      color: var(--neutral-600);
+      font-size: 0.95rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      margin-bottom: 24px;
+    }
+
+    .certificate-preview .cert-name {
+      font-size: 2.2rem;
+      font-weight: 700;
+      color: var(--neutral-900);
+      margin: 20px 0;
+      padding-bottom: 16px;
+      border-bottom: 2px solid var(--neutral-300);
+    }
+
+    .certificate-preview .cert-course {
+      font-size: 1.4rem;
+      font-weight: 600;
+      color: var(--primary);
+      margin-bottom: 24px;
+    }
+
+    .certificate-preview .cert-footer {
+      display: flex;
+      justify-content: space-around;
+      margin-top: 40px;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+
+    .cert-footer > div { text-align: center; }
+    .cert-footer .cert-line {
+      border-top: 1.5px solid var(--neutral-300);
+      padding-top: 8px;
+      font-size: 0.85rem;
+      color: var(--neutral-600);
+      min-width: 140px;
+    }
+
+    /* ADMIN PANEL */
+    .admin-panel {
+      background: var(--neutral-900);
+      border-radius: 24px;
+      padding: 32px;
+      color: white;
+      margin-top: 24px;
+    }
+
+    .admin-panel h3 {
+      font-size: 1.4rem;
+      margin-bottom: 8px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .admin-panel h3 i { color: var(--accent); }
+
+    .admin-panel > p {
+      color: #b0c4d9;
+      font-size: 0.95rem;
+      margin-bottom: 24px;
+    }
+
+    .admin-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 20px;
+    }
+
+    .admin-card {
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 16px;
+      padding: 24px;
+      transition: var(--transition);
+    }
+
+    .admin-card:hover { background: rgba(255,255,255,0.1); }
+
+    .admin-card h4 {
+      font-size: 1.05rem;
+      margin-bottom: 12px;
+      color: var(--accent);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .admin-card p {
+      font-size: 0.85rem;
+      color: #b0c4d9;
+      margin-bottom: 16px;
+      line-height: 1.5;
+    }
+
+    .admin-input, .admin-select, .admin-textarea {
+      width: 100%;
+      padding: 10px 14px;
+      border-radius: 10px;
+      border: 1px solid rgba(255,255,255,0.2);
+      background: rgba(255,255,255,0.1);
+      color: white;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.9rem;
+      margin-bottom: 10px;
+      transition: var(--transition);
+    }
+
+    .admin-textarea { resize: vertical; min-height: 80px; }
+
+    .admin-input:focus, .admin-select:focus, .admin-textarea:focus {
+      outline: none;
+      border-color: var(--accent);
+      background: rgba(255,255,255,0.15);
+    }
+
+    .admin-input::placeholder, .admin-textarea::placeholder { color: #7f96ab; }
+
+    .admin-select option { color: #1e2b3a; }
+
+    .admin-file-input {
+      width: 100%;
+      padding: 10px 14px;
+      border-radius: 10px;
+      border: 1px dashed rgba(255,255,255,0.3);
+      background: rgba(255,255,255,0.05);
+      color: #b0c4d9;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.85rem;
+      margin-bottom: 10px;
+      cursor: pointer;
+    }
+
+    .admin-file-input::-webkit-file-upload-button {
+      background: var(--accent);
+      color: #1e2b3a;
+      border: none;
+      padding: 6px 12px;
+      border-radius: 20px;
+      font-weight: 600;
+      font-size: 0.8rem;
+      cursor: pointer;
+      margin-right: 10px;
+      font-family: 'Inter', sans-serif;
+    }
+
+    .admin-btn {
+      background: var(--accent);
+      color: #1e2b3a;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 30px;
+      font-weight: 600;
+      font-size: 0.85rem;
+      cursor: pointer;
+      transition: var(--transition);
+      font-family: 'Inter', sans-serif;
+      width: 100%;
+    }
+
+    .admin-btn:hover { background: #d9a52e; }
+
+    .admin-btn.danger { background: var(--danger); color: white; }
+    .admin-btn.danger:hover { background: #8f2f2f; }
+
+    .admin-status {
+      margin-top: 20px;
+      padding: 14px 20px;
+      border-radius: 12px;
+      font-size: 0.9rem;
+      display: none;
+    }
+
+    .admin-status.success {
+      background: rgba(30, 123, 76, 0.2);
+      border: 1px solid var(--success);
+      color: #7fdfa8;
+      display: block;
+    }
+
+    .admin-status.error {
+      background: rgba(177, 62, 62, 0.2);
+      border: 1px solid var(--danger);
+      color: #f5a3a3;
+      display: block;
+    }
+
+    /* ADMIN LOGIN MODAL */
+    .admin-login-modal {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(15, 26, 36, 0.85);
+      z-index: 2000;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      backdrop-filter: blur(6px);
+    }
+
+    .admin-login-modal.active { display: flex; }
+
+    .admin-login-box {
+      background: white;
+      border-radius: 28px;
+      padding: 44px 40px;
+      max-width: 420px;
+      width: 100%;
+      box-shadow: 0 24px 60px rgba(0, 0, 0, 0.4);
+      text-align: center;
+      animation: fadeUp 0.3s ease;
+    }
+
+    .admin-login-box .lock-icon {
+      width: 70px;
+      height: 70px;
+      background: var(--primary);
+      color: var(--accent);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.8rem;
+      margin: 0 auto 20px;
+    }
+
+    .admin-login-box h3 {
+      font-size: 1.5rem;
+      color: var(--neutral-900);
+      margin-bottom: 8px;
+    }
+
+    .admin-login-box > p {
+      color: var(--neutral-600);
+      font-size: 0.9rem;
+      margin-bottom: 28px;
+    }
+
+    .admin-login-box input {
+      width: 100%;
+      padding: 14px 18px;
+      border-radius: 12px;
+      border: 1.5px solid var(--neutral-300);
+      font-family: 'Inter', sans-serif;
+      font-size: 1rem;
+      margin-bottom: 16px;
+      transition: var(--transition);
+    }
+
+    .admin-login-box input:focus {
+      outline: none;
+      border-color: var(--primary);
+      box-shadow: 0 0 0 4px rgba(30, 74, 111, 0.1);
+    }
+
+    .admin-login-error {
+      color: var(--danger);
+      font-size: 0.85rem;
+      margin-bottom: 16px;
+      display: none;
+      font-weight: 600;
+    }
+
+    .admin-login-error.show { display: block; }
+
+    .admin-login-close {
+      background: none;
+      border: none;
+      color: var(--neutral-600);
+      font-size: 0.9rem;
+      cursor: pointer;
+      margin-top: 16px;
+      text-decoration: underline;
+      font-family: 'Inter', sans-serif;
+    }
+
+    .admin-login-close:hover { color: var(--primary); }
+
+    /* Hidden admin trigger - invisible clickable area */
+    .admin-trigger {
+      position: fixed;
+      bottom: 0;
+      right: 0;
+      width: 40px;
+      height: 40px;
+      cursor: default;
+      z-index: 999;
+      opacity: 0;
+    }
+
+    /* RESPONSIVE */
+    @media (max-width: 900px) {
+      .hero-grid { flex-direction: column; text-align: center; }
+      .hero-content h1 { font-size: 2.6rem; }
+      .hero-content p { margin-left: auto; margin-right: auto; }
+      .hero-actions { justify-content: center; }
+      .navbar { flex-direction: column; align-items: stretch; }
+      .nav-links { justify-content: center; gap: 6px 14px; }
+      .nav-actions { justify-content: center; }
+      .about-trust { flex-direction: column; text-align: center; }
+      .about-stats { justify-content: center; }
+      .register-grid { flex-direction: column; }
+      .cta-banner { padding: 40px 24px; }
+      .cta-banner h2 { font-size: 1.8rem; }
+      .modal-body { padding: 24px; }
+      .modal-header { padding: 20px 24px; }
+      .admin-grid { grid-template-columns: 1fr; }
+    }
+
+    @media (max-width: 600px) {
+      .hero-content h1 { font-size: 2.1rem; }
+      .section-title { font-size: 1.8rem; }
+      .btn-large { padding: 14px 28px; font-size: 1rem; }
+      .nav-links { font-size: 0.85rem; }
+      .nav-actions .btn { padding: 8px 16px; font-size: 0.85rem; }
+      .register-form { padding: 28px 20px; }
+      .certificate-preview { padding: 28px 20px; }
+      .certificate-preview .cert-name { font-size: 1.5rem; }
+      .certificate-preview h2 { font-size: 1.5rem; }
+      .modal-tab { padding: 10px 14px; font-size: 0.8rem; }
+      .lesson-item { flex-direction: column; align-items: flex-start; }
+      .lesson-item .lesson-action { margin-left: 0; width: 100%; }
+      .facilitator-form { padding: 24px 20px; }
+      .admin-panel { padding: 20px; }
+      .admin-login-box { padding: 32px 24px; }
+    }
+
+    /* ANIMATIONS */
+    .fade-up { animation: fadeUp 0.6s ease forwards; }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .course-card, .step-item { animation: fadeUp 0.7s ease backwards; }
+    .course-card:nth-child(2) { animation-delay: 0.1s; }
+    .course-card:nth-child(3) { animation-delay: 0.2s; }
+    .course-card:nth-child(4) { animation-delay: 0.3s; }
+    .step-item:nth-child(2) { animation-delay: 0.1s; }
+    .step-item:nth-child(3) { animation-delay: 0.2s; }
+    .step-item:nth-child(4) { animation-delay: 0.3s; }
+
+    .hidden { display: none !important; }
   </style>
 </head>
 <body>
-<div class="geo-background"></div>
-<canvas id="robotCanvas"></canvas>
 
-<!-- Chat Widget -->
-<div class="chat-widget">
-  <div class="chat-toggle" id="chatToggle">
-    <i class="fas fa-robot"></i>
-  </div>
-  <div class="chat-box" id="chatBox">
-    <div class="chat-header">
-      <i class="fas fa-microchip"></i>
-      <h4>RoboAssist · Direct to Admin</h4>
-    </div>
-    <div class="chat-messages" id="chatMessages">
-      <div class="message bot">🤖 Connected! Send a message and it will be forwarded to Mihle's WhatsApp.</div>
-    </div>
-    <div class="quick-actions" id="quickActions">
-      <div class="quick-btn" data-msg="I'm interested in hiring you">📋 Hire</div>
-      <div class="quick-btn" data-msg="I'd like a quote">💰 Quote</div>
-      <div class="quick-btn" data-msg="Collaboration opportunity">🤝 Collaborate</div>
-    </div>
-    <div class="chat-input-area">
-      <input type="text" id="chatInput" placeholder="Type your message..." autocomplete="off">
-      <button id="sendChatBtn"><i class="fab fa-whatsapp"></i> Send</button>
-    </div>
-  </div>
-</div>
+<!-- HIDDEN ADMIN TRIGGER (invisible area bottom-right) -->
+<div class="admin-trigger" id="adminTrigger" title=""></div>
 
-<header>
-  <div class="container">
-    <nav>
-      <div class="logo"><i class="fas fa-map-marked-alt"></i><span>Manono Projects</span></div>
-      <ul class="nav-links">
-        <li><a href="#work">Work</a></li>
-        <li><a href="#about">About</a></li>
-        <li><a href="#contact">Contact</a></li>
-        <li><a href="#" id="openAdminBtn" class="admin-btn"><i class="fas fa-lock"></i> Admin</a></li>
-      </ul>
-    </nav>
-  </div>
+<!-- HEADER -->
+<header class="container">
+  <nav class="navbar">
+    <div class="logo" id="logoTrigger">
+      <i class="fas fa-seedling"></i>
+      <span>SA Youth Learning</span>
+    </div>
+    <ul class="nav-links">
+      <li><a href="#home">Home</a></li>
+      <li><a href="#courses">Courses</a></li>
+      <li><a href="#about">About Us</a></li>
+      <li><a href="#how">How It Works</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+    <div class="nav-actions">
+      <a href="#register" class="btn btn-outline"><i class="fas fa-sign-in-alt" style="margin-right: 6px;"></i>Login</a>
+      <a href="#register" class="btn btn-primary"><i class="fas fa-user-plus" style="margin-right: 6px;"></i>Register</a>
+    </div>
+  </nav>
 </header>
 
-<main>
+<!-- HERO -->
+<section id="home" class="hero">
+  <div class="container hero-grid">
+    <div class="hero-content fade-up">
+      <h1>Learn without limits, grow without debt.</h1>
+      <p>SA Youth Learning offers free, high-quality online courses for South African youth. Build practical skills, explore new interests, and prepare for your future.</p>
+      <div class="hero-actions">
+        <a href="#courses" class="btn btn-accent btn-large">Browse Courses <i class="fas fa-arrow-right" style="margin-left: 8px;"></i></a>
+        <a href="#how" class="btn btn-outline btn-large">How it works</a>
+      </div>
+    </div>
+    <div class="hero-image fade-up"></div>
+  </div>
+</section>
+
+<!-- COURSES -->
+<section id="courses" class="container">
+  <h2 class="section-title">Explore our free courses</h2>
+  <p class="section-sub">Start learning today — no fees, just knowledge and skills for your future.</p>
+
+  <div class="course-grid">
+    <div class="course-card">
+      <div class="course-image" style="background-image: url('https://images.unsplash.com/photo-1513364776144-60967b0f800f?w=600&q=80');">
+        <i class="fas fa-paint-brush"></i>
+      </div>
+      <div class="course-content">
+        <span class="course-tag">Creative</span>
+        <h3>Introduction to Digital Art</h3>
+        <div class="meta"><i class="far fa-clock"></i> 6 weeks · self-paced</div>
+        <p>Learn the fundamentals of digital painting, colour theory and composition using free tools.</p>
+        <button class="card-link" onclick="openCourse('digital-art')">Start learning <i class="fas fa-arrow-right"></i></button>
+      </div>
+    </div>
+
+    <div class="course-card">
+      <div class="course-image" style="background-image: url('https://images.unsplash.com/photo-1579621970563-ebec7560ff3e?w=600&q=80');">
+        <i class="fas fa-chart-line"></i>
+      </div>
+      <div class="course-content">
+        <span class="course-tag">Business</span>
+        <h3>Personal Finance Essentials</h3>
+        <div class="meta"><i class="far fa-clock"></i> 4 weeks · self-paced</div>
+        <p>Budgeting, saving, and understanding credit — practical skills for everyday life.</p>
+        <button class="card-link" onclick="openCourse('finance')">Start learning <i class="fas fa-arrow-right"></i></button>
+      </div>
+    </div>
+
+    <div class="course-card">
+      <div class="course-image" style="background-image: url('https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=600&q=80');">
+        <i class="fas fa-code"></i>
+      </div>
+      <div class="course-content">
+        <span class="course-tag">Technology</span>
+        <h3>Web Development Basics</h3>
+        <div class="meta"><i class="far fa-clock"></i> 8 weeks · self-paced</div>
+        <p>Build a simple website with HTML, CSS and a touch of JavaScript. No prior experience needed.</p>
+        <button class="card-link" onclick="openCourse('webdev')">Start learning <i class="fas fa-arrow-right"></i></button>
+      </div>
+    </div>
+
+    <div class="course-card">
+      <div class="course-image" style="background-image: url('https://images.unsplash.com/photo-1506126613408-eca07ce68773?w=600&q=80');">
+        <i class="fas fa-heartbeat"></i>
+      </div>
+      <div class="course-content">
+        <span class="course-tag">Wellbeing</span>
+        <h3>Mindfulness & Stress Reduction</h3>
+        <div class="meta"><i class="far fa-clock"></i> 3 weeks · self-paced</div>
+        <p>Simple mindfulness techniques to improve focus, reduce anxiety and build resilience.</p>
+        <button class="card-link" onclick="openCourse('mindfulness')">Start learning <i class="fas fa-arrow-right"></i></button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section id="how" style="background: var(--neutral-200);">
   <div class="container">
-    <section class="hero">
-      <div class="hero-content">
-        <div class="badge"><i class="fas fa-map-pin"></i> CAPE TOWN · REMOTE</div>
-        <h1>Mihle Manono <span class="gradient-text">Data & Full‑Stack</span><br>Engineer</h1>
-        <p>Data analyst & full-stack developer specialized in backend architecture, intuitive frontend UIs, and data storytelling.</p>
-        <div class="hero-stats">
-          <div class="stat"><span>4+</span> years exp</div>
-          <div class="stat"><span id="projectCount">0</span> projects</div>
-          <div class="stat"><span>Full‑stack</span> focus</div>
-        </div>
-        <div style="margin-top: 1.2rem; display: flex; gap: 0.8rem; flex-wrap: wrap; justify-content: center;">
-          <a href="#work" class="btn"><i class="fas fa-layer-group"></i> Explore projects</a>
-          <a href="#contact" class="btn btn-outline"><i class="fas fa-comment-dots"></i> Connect</a>
-        </div>
+    <h2 class="section-title">How it works</h2>
+    <p class="section-sub">Four simple steps to start your learning journey.</p>
+    <div class="steps-grid">
+      <div class="step-item">
+        <div class="step-number">1</div>
+        <h4>Create free account</h4>
+        <p>Register in seconds — no payment details required.</p>
       </div>
-      <div class="hero-map-icon">
-        <div class="compass-icon"><i class="fas fa-globe-africa"></i></div>
-        <div style="font-weight: 600; margin: 0.8rem 0 0.2rem; color: #f5b81b; font-size: 0.9rem;">⚡ Backend · Frontend · Analytics</div>
-        <div style="font-size: 0.75rem; color: #999;">Python • SQL • React • Node</div>
+      <div class="step-item">
+        <div class="step-number">2</div>
+        <h4>Choose a course</h4>
+        <p>Browse our catalogue of free courses.</p>
       </div>
-    </section>
+      <div class="step-item">
+        <div class="step-number">3</div>
+        <h4>Learn at your pace</h4>
+        <p>Access PDF assignments, guides and request a facilitator.</p>
+      </div>
+      <div class="step-item">
+        <div class="step-number">4</div>
+        <h4>Earn certificate</h4>
+        <p>Score 80%+ and download your admin-issued certificate.</p>
+      </div>
+    </div>
+  </div>
+</section>
 
-    <section id="work">
-      <div class="section-title"><i class="fas fa-project-diagram"></i><span>My Projects</span></div>
-      <div class="title-divider"></div>
-      <div class="projects-grid" id="projectsGrid">
-        <div class="empty-state"><i class="fas fa-folder-open"></i><p>No projects yet. Login as admin to add your work.</p></div>
-      </div>
-    </section>
-
-    <div class="profile-card" id="about">
-      <div class="split-about">
-        <div class="about-details">
-          <h3 style="font-size: 1.3rem; margin-bottom: 0.8rem;"><i class="fas fa-user-astronaut"></i> About Mihle Manono</h3>
-          <p style="font-size: 0.9rem;">I'm a <strong>Data analyst & full-stack developer</strong> passionate about building robust backend systems and polished frontend interfaces. I specialize in transforming raw data into actionable insights while crafting seamless user experiences.</p>
-          <p style="margin-top: 0.8rem; font-size: 0.9rem;">Toolkit: Python, SQL, React, Node.js, Power BI, Docker, and modern cloud platforms.</p>
+<!-- ABOUT -->
+<section id="about" class="container">
+  <div class="about-trust">
+    <div class="about-text">
+      <h2>About SA Youth Learning</h2>
+      <p>We believe that education should be accessible to every young person in South Africa. Our platform offers free courses designed to help you build practical skills and explore new interests — without financial barriers.</p>
+      <p>All content is curated from leading open educational resources and administered by our team of qualified facilitators.</p>
+      <div class="about-stats">
+        <div class="stat-item">
+          <span class="stat-number">12k+</span>
+          <span class="stat-label">Active learners</span>
         </div>
-        <div class="contact-info-card" id="contact">
-          <h3 style="font-size: 1.3rem; margin-bottom: 0.8rem;"><i class="fas fa-address-card"></i> Contact</h3>
-          <ul class="contact-methods">
-            <li><i class="fas fa-envelope"></i> <a href="mailto:manonomihle106@gmail.com" class="contact-link">manonomihle106@gmail.com</a></li>
-            <li><i class="fas fa-phone-alt"></i> <a href="tel:+27750870303" class="contact-link">+27 75 087 0303</a></li>
-            <li><i class="fab fa-whatsapp"></i> <a href="https://wa.me/27632716478" target="_blank" class="contact-link">+27 63 271 6478</a></li>
-            <li><i class="fas fa-map-marker-alt"></i> Cape Town, South Africa</li>
-          </ul>
-          <div style="margin-top: 0.8rem;">
-            <a href="mailto:manonomihle106@gmail.com" class="btn" style="padding: 0.5rem 1rem; font-size: 0.8rem;"><i class="fas fa-paper-plane"></i> Send email</a>
+        <div class="stat-item">
+          <span class="stat-number">40+</span>
+          <span class="stat-label">Free courses</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-number">100%</span>
+          <span class="stat-label">Free access</span>
+        </div>
+      </div>
+    </div>
+    <div class="about-image">
+      <i class="fas fa-users"></i>
+    </div>
+  </div>
+</section>
+
+<!-- REGISTER & BANK DEPOSIT -->
+<section id="register" class="register-section">
+  <div class="container">
+    <div class="register-grid">
+      <div class="register-info">
+        <h2>Register for free access</h2>
+        <p>Join thousands of young South Africans learning new skills. Create your free account and start learning immediately.</p>
+
+        <div class="bank-details">
+          <h4><i class="fas fa-university"></i> Direct Bank Deposit</h4>
+          <div class="bank-row">
+            <span class="bank-label">Bank Name</span>
+            <span class="bank-value">Capitec Bank</span>
+          </div>
+          <div class="bank-row">
+            <span class="bank-label">Account Holder</span>
+            <span class="bank-value">SA Youth Learning NPC</span>
+          </div>
+          <div class="bank-row">
+            <span class="bank-label">Account Number</span>
+            <span class="bank-value">1234567890</span>
+          </div>
+          <div class="bank-row">
+            <span class="bank-label">Branch Code</span>
+            <span class="bank-value">470010</span>
+          </div>
+          <div class="bank-row">
+            <span class="bank-label">Account Type</span>
+            <span class="bank-value">Cheque / Current</span>
+          </div>
+          <div class="bank-row">
+            <span class="bank-label">Reference</span>
+            <span class="bank-value">Your Full Name + Email</span>
+          </div>
+          <div class="bank-note">
+            <i class="fas fa-info-circle"></i>
+            <span>Use your full name and email as the payment reference so we can match your deposit. All courses remain free — deposits are for optional premium certificates and support.</span>
           </div>
         </div>
       </div>
-    </div>
-  </div>
-</main>
 
-<footer><div class="container"><p><i class="fas fa-map-marked-alt"></i> © 2026 Manono Projects — built by Mihle Manono</p></div></footer>
-
-<!-- WhatsApp API Setup Modal -->
-<div id="adminQRModal" class="modal">
-  <div class="modal-content">
-    <span class="close-modal" id="closeQRModal">&times;</span>
-    <h3 style="font-size: 1.2rem;"><i class="fab fa-whatsapp"></i> Connect Your WhatsApp</h3>
-    <p style="font-size: 0.85rem;"><strong>Your WhatsApp: +27 63 271 6478</strong></p>
-    <div id="whatsappQR"></div>
-    <div class="api-instructions">
-      <strong><i class="fas fa-plug"></i> How to receive messages from this website:</strong><br><br>
-      <p><strong>Method 1 (CallMeBot API - Recommended):</strong></p>
-      <ol style="margin-left: 1rem; margin-top: 0.3rem;">
-        <li>Click button below to open WhatsApp</li>
-        <li>Send: <strong>"I allow callmebot to send me messages"</strong></li>
-        <li>You'll receive an API key instantly</li>
-        <li>Paste the API key below and Save</li>
-      </ol>
-      <button id="setupCallMeBotBtn" class="btn" style="margin-top: 0.5rem; background:#25D366; width:100%; font-size:0.8rem;"><i class="fab fa-whatsapp"></i> Step 1: Get API Key</button>
-      <div style="margin-top: 0.8rem;">
-        <input type="text" id="apiKeyInput" placeholder="Paste your CallMeBot API Key here" style="font-size:0.8rem;">
-        <button id="saveApiKeyBtn" class="btn" style="margin-top: 0.4rem; background:#f5b81b; color:#0a0a0a; width:100%; font-size:0.8rem;">Save API Key & Activate</button>
+      <div class="register-form">
+        <h3>Create your account</h3>
+        <p>It only takes a minute.</p>
+        <form id="registrationForm" onsubmit="handleRegistration(event)">
+          <div class="form-group">
+            <label for="fullname">Full name</label>
+            <input type="text" id="fullname" placeholder="e.g. Thabo Nkosi" required>
+          </div>
+          <div class="form-group">
+            <label for="email">Email address</label>
+            <input type="email" id="email" placeholder="you@example.com" required>
+          </div>
+          <div class="form-group">
+            <label for="password">Password</label>
+            <input type="password" id="password" placeholder="Create a password (min 6 characters)" required minlength="6">
+          </div>
+          <div class="form-group">
+            <label for="paymentRef">Payment reference (if you have deposited)</label>
+            <input type="text" id="paymentRef" placeholder="Optional — e.g. your name">
+          </div>
+          <button type="submit" class="btn btn-primary btn-large" style="width: 100%; margin-top: 8px;">
+            <i class="fas fa-user-plus" style="margin-right: 8px;"></i> Register for free
+          </button>
+        </form>
       </div>
-      <div id="apiStatus" class="admin-status"><i class="fas fa-info-circle"></i> API not configured. Follow steps above.</div>
     </div>
+  </div>
+</section>
+
+<!-- CTA BANNER -->
+<div class="container">
+  <div class="cta-banner">
+    <h2>Ready to start learning?</h2>
+    <p>Join thousands of young South Africans and access all courses for free. Score 80% or higher and earn your certificate.</p>
+    <a href="#register" class="btn btn-accent btn-large">Register for free <i class="fas fa-chevron-right" style="margin-left: 8px;"></i></a>
   </div>
 </div>
 
-<!-- Admin Login Modal -->
-<div id="loginModal" class="modal">
-  <div class="modal-content">
-    <span class="close-modal" id="closeLoginModal">&times;</span>
-    <h3><i class="fas fa-shield-alt"></i> Admin Access</h3>
-    <input type="password" id="adminPassword" placeholder="Enter password">
-    <button id="verifyAdminBtn" class="btn" style="margin-top: 0.8rem; width:100%">Login</button>
+<!-- FOOTER -->
+<footer id="contact" class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <h4>SA Youth Learning</h4>
+        <ul>
+          <li><i class="fas fa-map-pin" style="margin-right: 8px;"></i> South Africa, online</li>
+          <li><i class="fas fa-envelope" style="margin-right: 8px;"></i> hello@sayouthearning.co.za</li>
+        </ul>
+      </div>
+      <div>
+        <h4>Quick links</h4>
+        <ul>
+          <li><a href="#home">Home</a></li>
+          <li><a href="#courses">Courses</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#how">How it works</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Support</h4>
+        <ul>
+          <li><a href="#">Contact us</a></li>
+          <li><a href="#">FAQs</a></li>
+          <li><a href="#">Terms of use</a></li>
+          <li><a href="#">Privacy policy</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Connect</h4>
+        <ul>
+          <li><a href="#"><i class="fab fa-twitter"></i> Twitter</a></li>
+          <li><a href="#"><i class="fab fa-facebook"></i> Facebook</a></li>
+          <li><a href="#"><i class="fab fa-instagram"></i> Instagram</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2026 SA Youth Learning. Empowering young South Africans through free, accessible education.</p>
+    </div>
+  </div>
+</footer>
+
+<!-- ADMIN LOGIN MODAL -->
+<div id="adminLoginModal" class="admin-login-modal">
+  <div class="admin-login-box">
+    <div class="lock-icon"><i class="fas fa-lock"></i></div>
+    <h3>Administrator Access</h3>
+    <p>Enter your credentials to manage courses</p>
+    <input type="text" id="adminUsername" placeholder="Username" autocomplete="off">
+    <input type="password" id="adminPassword" placeholder="Password" autocomplete="off">
+    <div id="adminLoginError" class="admin-login-error">Invalid username or password. Please try again.</div>
+    <button class="btn btn-primary btn-large" style="width: 100%;" onclick="attemptAdminLogin()">
+      <i class="fas fa-sign-in-alt" style="margin-right: 8px;"></i> Login
+    </button>
+    <button class="admin-login-close" onclick="closeAdminLogin()">Cancel</button>
   </div>
 </div>
 
-<!-- Admin Dashboard Modal -->
-<div id="adminModal" class="modal">
-  <div class="modal-content" style="max-width: 600px;">
-    <span class="close-modal" id="closeAdminModal">&times;</span>
-    <h3 style="font-size: 1.2rem;"><i class="fas fa-cog"></i> Admin Dashboard</h3>
-    <button id="pairWhatsAppBtn" class="btn" style="margin-bottom: 0.8rem; background:#25D366; width:100%;"><i class="fab fa-whatsapp"></i> Configure WhatsApp Integration</button>
-    <div style="background: #0f0f0f; padding: 0.8rem; border-radius: 0.8rem;">
-      <h4 style="font-size: 1rem;">➕ Add Project</h4>
-      <input type="text" id="projectName" placeholder="Project name">
-      <input type="text" id="projectLink" placeholder="Project URL">
-      <textarea id="projectPurpose" placeholder="Project purpose / description" rows="3"></textarea>
-      <button id="saveProjectBtn" class="btn" style="background:#f5b81b; color:#0a0a0a; width:100%;">Save Project</button>
+<!-- COURSE MODAL -->
+<div id="courseModal" class="modal-overlay">
+  <div class="modal">
+    <div class="modal-header">
+      <h2 id="modalCourseTitle">Course</h2>
+      <button class="modal-close" onclick="closeCourse()"><i class="fas fa-times"></i></button>
     </div>
-    <div style="background: #0f0f0f; border-radius: 0.8rem; padding: 0.8rem; margin-top: 0.8rem;">
-      <h4 style="font-size: 1rem;">📁 Existing Projects</h4>
-      <div id="adminProjectsList"></div>
+    <div class="modal-body">
+      <div class="modal-tabs">
+        <button class="modal-tab active" onclick="switchTab(this, 'tab-assignments')"><i class="fas fa-tasks"></i> Assignments</button>
+        <button class="modal-tab" onclick="switchTab(this, 'tab-guides')"><i class="fas fa-book"></i> Study Guides</button>
+        <button class="modal-tab" onclick="switchTab(this, 'tab-facilitator')"><i class="fas fa-chalkboard-teacher"></i> Request Facilitator</button>
+        <button class="modal-tab" onclick="switchTab(this, 'tab-quiz')"><i class="fas fa-question-circle"></i> Final Quiz</button>
+        <button class="modal-tab" onclick="switchTab(this, 'tab-certificate')"><i class="fas fa-certificate"></i> Certificate</button>
+        <button class="modal-tab hidden" id="adminTabBtn" onclick="switchTab(this, 'tab-admin')"><i class="fas fa-cog"></i> Admin Panel</button>
+      </div>
+
+      <div id="tab-assignments" class="tab-content active">
+        <h3 style="margin-bottom: 20px; font-size: 1.2rem;">Course Assignments & Q&A</h3>
+        <div id="assignmentList"></div>
+      </div>
+
+      <div id="tab-guides" class="tab-content">
+        <h3 style="margin-bottom: 8px; font-size: 1.2rem;">Study Guides & Materials</h3>
+        <p style="color: var(--neutral-600); margin-bottom: 24px; font-size: 0.9rem;">Curated from leading open educational resources. Click any guide to download.</p>
+        <div id="guideList"></div>
+      </div>
+
+      <div id="tab-facilitator" class="tab-content">
+        <div class="facilitator-form">
+          <h3><i class="fas fa-chalkboard-teacher" style="color: var(--primary); margin-right: 8px;"></i>Request a Facilitator</h3>
+          <p>Need extra help? Request a facilitator for this course and we'll connect you with a qualified volunteer.</p>
+          <form id="facilitatorForm" onsubmit="submitFacilitatorRequest(event)">
+            <div class="form-group">
+              <label for="facilitatorName">Your name</label>
+              <input type="text" id="facilitatorName" placeholder="e.g. Thabo Nkosi" required>
+            </div>
+            <div class="form-group">
+              <label for="facilitatorEmail">Email address</label>
+              <input type="email" id="facilitatorEmail" placeholder="you@example.com" required>
+            </div>
+            <div class="form-group">
+              <label for="facilitatorTopic">What do you need help with?</label>
+              <select id="facilitatorTopic" required>
+                <option value="">Select a topic</option>
+                <option value="assignments">Understanding assignments</option>
+                <option value="guides">Study guide questions</option>
+                <option value="quiz">Quiz preparation</option>
+                <option value="general">General course guidance</option>
+                <option value="other">Other</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="facilitatorMessage">Additional details (optional)</label>
+              <textarea id="facilitatorMessage" placeholder="Tell us more about what you need help with..."></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary btn-large" style="width: 100%;">
+              <i class="fas fa-paper-plane" style="margin-right: 8px;"></i> Submit Request
+            </button>
+          </form>
+          <div id="facilitatorSuccess" class="facilitator-success">
+            <h4><i class="fas fa-check-circle"></i> Request Submitted!</h4>
+            <p>Thank you. A facilitator will contact you within 48 hours at the email you provided.</p>
+          </div>
+        </div>
+      </div>
+
+      <div id="tab-quiz" class="tab-content">
+        <h3 style="margin-bottom: 8px; font-size: 1.2rem;">Final Assessment</h3>
+        <p style="color: var(--neutral-600); margin-bottom: 24px; font-size: 0.95rem;">Answer all questions correctly. You need <strong>80% or higher</strong> to pass and unlock your certificate.</p>
+        <form id="quizForm" onsubmit="submitQuiz(event)">
+          <div id="quizQuestions"></div>
+          <button type="submit" class="btn btn-primary btn-large" style="width: 100%;">
+            <i class="fas fa-check-circle" style="margin-right: 8px;"></i> Submit Quiz
+          </button>
+        </form>
+        <div id="quizResult" class="quiz-result"></div>
+      </div>
+
+      <div id="tab-certificate" class="tab-content">
+        <div id="certificateArea">
+          <div id="certificateWaiting" style="text-align: center; padding: 40px 20px;">
+            <i class="fas fa-hourglass-half" style="font-size: 3rem; color: var(--accent); margin-bottom: 16px;"></i>
+            <h3 style="color: var(--primary); margin-bottom: 12px;">Certificate Pending</h3>
+            <p style="color: var(--neutral-600); max-width: 500px; margin: 0 auto 20px;">Your certificate will be issued by an administrator after you pass the final quiz with 80% or higher. Please check back later.</p>
+            <p id="certLockedMsg" style="color: var(--danger); font-weight: 600; display: none;">
+              <i class="fas fa-lock"></i> Complete the quiz with 80%+ to unlock your certificate request.
+            </p>
+          </div>
+          <div id="certificateReady" class="hidden">
+            <div class="certificate-preview">
+              <h2>Certificate of Completion</h2>
+              <p class="cert-sub">SA Youth Learning</p>
+              <p style="color: var(--neutral-600);">This certifies that</p>
+              <div class="cert-name" id="certName">Student Name</div>
+              <p style="color: var(--neutral-600);">has successfully completed</p>
+              <div class="cert-course" id="certCourse">Course Title</div>
+              <p style="color: var(--neutral-600); font-size: 0.9rem;">with a pass mark of 80% or higher</p>
+              <div class="cert-footer">
+                <div><div class="cert-line">Date Issued</div></div>
+                <div><div class="cert-line">Programme Director</div></div>
+              </div>
+            </div>
+            <div style="text-align: center; margin-top: 24px;">
+              <button class="btn btn-accent btn-large" onclick="downloadAdminCertificate()">
+                <i class="fas fa-download" style="margin-right: 8px;"></i> Download Certificate
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ADMIN PANEL TAB -->
+      <div id="tab-admin" class="tab-content">
+        <div class="admin-panel">
+          <h3><i class="fas fa-shield-alt"></i> Administrator Panel</h3>
+          <p>Manage course content and issue certificates for learners who have passed. Only visible when logged in as admin.</p>
+
+          <div class="admin-grid">
+            <!-- Add Assignment PDF -->
+            <div class="admin-card">
+              <h4><i class="fas fa-tasks"></i> Upload Assignment (PDF)</h4>
+              <p>Upload an assignment PDF for the selected course. Learners will be able to download it.</p>
+              <select id="adminAssignmentCourse" class="admin-select">
+                <option value="digital-art">Introduction to Digital Art</option>
+                <option value="finance">Personal Finance Essentials</option>
+                <option value="webdev">Web Development Basics</option>
+                <option value="mindfulness">Mindfulness & Stress Reduction</option>
+              </select>
+              <input type="text" id="adminAssignmentTitle" class="admin-input" placeholder="Assignment title">
+              <textarea id="adminAssignmentDesc" class="admin-textarea" placeholder="Short description"></textarea>
+              <input type="file" id="adminAssignmentPdf" class="admin-file-input" accept=".pdf">
+              <button class="admin-btn" onclick="adminUploadAssignment()">
+                <i class="fas fa-upload"></i> Upload Assignment PDF
+              </button>
+            </div>
+
+            <!-- Add Study Guide PDF -->
+            <div class="admin-card">
+              <h4><i class="fas fa-book"></i> Upload Study Guide (PDF)</h4>
+              <p>Upload a study guide PDF for the selected course. Learners can download it anytime.</p>
+              <select id="adminGuideCourse" class="admin-select">
+                <option value="digital-art">Introduction to Digital Art</option>
+                <option value="finance">Personal Finance Essentials</option>
+                <option value="webdev">Web Development Basics</option>
+                <option value="mindfulness">Mindfulness & Stress Reduction</option>
+              </select>
+              <input type="text" id="adminGuideTitle" class="admin-input" placeholder="Guide title">
+              <textarea id="adminGuideDesc" class="admin-textarea" placeholder="Short description"></textarea>
+              <input type="file" id="adminGuidePdf" class="admin-file-input" accept=".pdf">
+              <button class="admin-btn" onclick="adminUploadGuide()">
+                <i class="fas fa-upload"></i> Upload Study Guide PDF
+              </button>
+            </div>
+
+            <!-- Issue Certificate -->
+            <div class="admin-card">
+              <h4><i class="fas fa-certificate"></i> Issue Certificate</h4>
+              <p>Upload a certificate for a learner who has passed the course with 80%+. They will be able to download it.</p>
+              <select id="adminCertCourse" class="admin-select">
+                <option value="digital-art">Introduction to Digital Art</option>
+                <option value="finance">Personal Finance Essentials</option>
+                <option value="webdev">Web Development Basics</option>
+                <option value="mindfulness">Mindfulness & Stress Reduction</option>
+              </select>
+              <input type="text" id="adminCertStudentName" class="admin-input" placeholder="Student full name">
+              <input type="email" id="adminCertStudentEmail" class="admin-input" placeholder="Student email">
+              <input type="file" id="adminCertPdf" class="admin-file-input" accept=".pdf">
+              <button class="admin-btn" onclick="adminIssueCertificate()">
+                <i class="fas fa-upload"></i> Upload Certificate
+              </button>
+            </div>
+
+            <!-- View Issued Certificates -->
+            <div class="admin-card">
+              <h4><i class="fas fa-list"></i> Issued Certificates</h4>
+              <p>View and manage certificates already issued to learners.</p>
+              <div id="issuedCertList" style="max-height: 200px; overflow-y: auto; margin-bottom: 12px;"></div>
+              <button class="admin-btn" onclick="refreshIssuedCerts()">
+                <i class="fas fa-sync"></i> Refresh List
+              </button>
+            </div>
+          </div>
+
+          <div id="adminStatus" class="admin-status"></div>
+        </div>
+      </div>
     </div>
   </div>
 </div>
 
 <script>
-  // === ANIMATED ROBOTICS ===
-  const canvas = document.getElementById('robotCanvas');
-  let ctx = canvas.getContext('2d');
-  let width, height, robots = [];
-  class Robot { constructor(x, y, s, vx, vy, t) { this.x = x; this.y = y; this.s = s; this.vx = vx; this.vy = vy; this.t = t; this.ang = 0; this.rv = (Math.random() - 0.5) * 0.05; }
-    update() { this.x += this.vx; this.y += this.vy; this.ang += this.rv; if (this.x < -50) this.x = width + 50; if (this.x > width + 50) this.x = -50; if (this.y < -50) this.y = height + 50; if (this.y > height + 50) this.y = -50; }
-    draw(ctx) {
-      ctx.save(); ctx.translate(this.x, this.y); ctx.rotate(this.ang); ctx.shadowBlur = 6; ctx.shadowColor = '#f5b81b';
-      if (this.t === 'robot') {
-        ctx.fillStyle = '#f5b81b'; ctx.fillRect(-this.s/2, -this.s/2, this.s, this.s);
-        ctx.fillStyle = '#0a0a0a'; ctx.fillRect(-this.s/4, -this.s/3, this.s/6, this.s/3); ctx.fillRect(this.s/4 - this.s/6, -this.s/3, this.s/6, this.s/3);
-      } else if (this.t === 'drone') {
-        ctx.fillStyle = '#d4940a'; ctx.beginPath(); ctx.ellipse(0, 0, this.s/1.5, this.s/2, 0, 0, Math.PI*2); ctx.fill();
-        ctx.fillStyle = '#0a0a0a'; ctx.beginPath(); ctx.arc(-this.s/3, -this.s/4, this.s/6, 0, Math.PI*2); ctx.arc(this.s/3, -this.s/4, this.s/6, 0, Math.PI*2); ctx.fill();
-      } else {
-        ctx.fillStyle = '#f5b81b';
-        for (let i = 0; i < 8; i++) { let rad = i * Math.PI * 2 / 8; let x1 = Math.cos(rad) * this.s/1.8, y1 = Math.sin(rad) * this.s/1.8; let x2 = Math.cos(rad+0.3) * this.s/1.2, y2 = Math.sin(rad+0.3) * this.s/1.2; ctx.beginPath(); ctx.moveTo(x1, y1); ctx.lineTo(x2, y2); ctx.lineTo(Math.cos(rad-0.3)*this.s/1.2, Math.sin(rad-0.3)*this.s/1.2); ctx.fill(); }
-        ctx.fillStyle = '#0a0a0a'; ctx.beginPath(); ctx.arc(0, 0, this.s/3, 0, Math.PI*2); ctx.fill();
+  // ============================================================
+  // ADMIN CREDENTIALS (hidden — not displayed anywhere)
+  // ============================================================
+  const ADMIN_CREDENTIALS = {
+    username: 'southafrica',
+    password: '123456'
+  };
+
+  let isAdminLoggedIn = false;
+
+  // ============================================================
+  // CERTIFICATE STORAGE (admin-issued certificates)
+  // ============================================================
+  const issuedCertificates = [
+    // Pre-seeded example (admin-issued)
+    // {
+    //   studentName: 'Thabo Nkosi',
+    //   studentEmail: 'thabo@example.com',
+    //   courseId: 'digital-art',
+    //   courseTitle: 'Introduction to Digital Art',
+    //   fileName: 'certificate-thabo.pdf',
+    //   dataUrl: 'data:application/pdf;base64,...',
+    //   issuedAt: '2026-01-15'
+    // }
+  ];
+
+  // ============================================================
+  // COURSE DATA
+  // ============================================================
+  const courses = {
+    'digital-art': {
+      title: 'Introduction to Digital Art',
+      assignments: [
+        {
+          title: 'Colour Wheel Exercise',
+          desc: 'Create a digital colour wheel using primary, secondary, and tertiary colours.',
+          pdfData: null,
+          questions: [
+            { q: 'What are the three primary colours in the RYB model?', a: 'Red, Yellow, and Blue. These cannot be created by mixing other colours.' },
+            { q: 'How do you create a secondary colour?', a: 'Mix two primary colours in equal parts. For example, Red + Yellow = Orange.' },
+            { q: 'What is a tertiary colour?', a: 'A colour made by mixing a primary and an adjacent secondary colour, such as Red-Orange.' },
+            { q: 'Why is colour theory important in digital art?', a: 'It helps artists choose harmonious palettes that evoke specific moods and communicate effectively.' }
+          ]
+        },
+        {
+          title: 'Shape & Form Study',
+          desc: 'Draw 10 everyday objects using only basic shapes and shading.',
+          pdfData: null,
+          questions: [
+            { q: 'What is the difference between shape and form?', a: 'Shape is 2D (flat), while form is 3D and has volume, depth, and perspective.' },
+            { q: 'Name three basic shapes used to construct complex objects.', a: 'Circle, square, and triangle.' },
+            { q: 'What is shading used for in digital art?', a: 'Shading creates the illusion of depth, volume, and light direction on a 2D surface.' },
+            { q: 'What is a light source, and why does it matter?', a: 'A light source determines where highlights and shadows fall. Consistent lighting makes artwork believable.' }
+          ]
+        },
+        {
+          title: 'Composition Practice',
+          desc: 'Recreate a landscape using the rule of thirds.',
+          pdfData: null,
+          questions: [
+            { q: 'What is the rule of thirds?', a: 'A composition guideline that divides an image into a 3x3 grid. Key elements should be placed along the lines or at intersections.' },
+            { q: 'Why is the rule of thirds effective?', a: 'It creates visual interest and balance, avoiding the static feel of centring everything.' },
+            { q: 'What is negative space?', a: 'The empty area around and between subjects. It helps define shapes and can create visual impact.' },
+            { q: 'Give an example of a leading line in a landscape.', a: 'A winding road, a river, or a fence that guides the viewer\'s eye into the scene.' }
+          ]
+        },
+        {
+          title: 'Final Project: Self-Portrait',
+          desc: 'Create a digital self-portrait applying all techniques learned.',
+          pdfData: null,
+          questions: [
+            { q: 'Why is a self-portrait a good final project?', a: 'It combines colour, shape, shading, and composition into one cohesive piece.' },
+            { q: 'What is the golden ratio, and how can it improve a portrait?', a: 'A mathematical ratio (~1.618) that creates pleasing proportions. In portraits, it helps position facial features naturally.' },
+            { q: 'How do you create skin tone in digital art?', a: 'Start with a base colour, then add shadows and highlights. Avoid pure black or white; use warm and cool tones instead.' },
+            { q: 'What is the purpose of a reference photo?', a: 'It provides accurate lighting, proportions, and details to work from, improving realism.' }
+          ]
+        }
+      ],
+      guides: [
+        { title: 'Digital Art Fundamentals', desc: 'A comprehensive guide covering tools, brushes, and colour theory.', pdfData: null },
+        { title: 'Colour Theory Cheat Sheet', desc: 'Quick reference for harmonious colour combinations.', pdfData: null },
+        { title: 'Composition Rules Explained', desc: 'Visual examples of the rule of thirds, leading lines, and balance.', pdfData: null },
+        { title: 'Free Brush Pack Download', desc: 'Custom brushes for Krita, GIMP, and Photoshop.', pdfData: null },
+        { title: 'Shading & Lighting Guide', desc: 'How to light your subjects for dramatic and realistic effects.', pdfData: null },
+        { title: 'Digital Art Glossary', desc: 'Definitions of common terms every digital artist should know.', pdfData: null }
+      ],
+      quiz: [
+        { q: 'Which colour model is best for digital screens?', options: ['CMYK', 'RGB', 'Pantone', 'RYB'], correct: 1 },
+        { q: 'What does the rule of thirds help with?', options: ['Colour mixing', 'Composition', 'Brush size', 'Layer management'], correct: 1 },
+        { q: 'Which file format preserves layers?', options: ['JPEG', 'PNG', 'PSD', 'GIF'], correct: 2 },
+        { q: 'What is a complementary colour pair?', options: ['Red & Blue', 'Blue & Orange', 'Green & Yellow', 'Purple & Pink'], correct: 1 },
+        { q: 'What does DPI measure?', options: ['Brush hardness', 'Colour depth', 'Print resolution', 'Canvas size'], correct: 2 },
+        { q: 'What is the primary purpose of shading?', options: ['Adding colour', 'Creating depth', 'Blurring edges', 'Adding text'], correct: 1 },
+        { q: 'Which tool is best for precise selections?', options: ['Brush', 'Lasso', 'Gradient', 'Text'], correct: 1 },
+        { q: 'What is a layer mask used for?', options: ['Hiding parts of a layer', 'Adding colour', 'Resizing canvas', 'Adding filters'], correct: 0 },
+        { q: 'What does "opacity" control?', options: ['Brush size', 'Transparency', 'Colour hue', 'Canvas rotation'], correct: 1 },
+        { q: 'Which is a warm colour?', options: ['Blue', 'Green', 'Orange', 'Purple'], correct: 2 }
+      ]
+    },
+
+    'finance': {
+      title: 'Personal Finance Essentials',
+      assignments: [
+        {
+          title: 'Build a Monthly Budget',
+          desc: 'Create a personal budget tracking income and expenses for one month.',
+          pdfData: null,
+          questions: [
+            { q: 'What is the 50/30/20 rule?', a: '50% of income for needs, 30% for wants, and 20% for savings and debt repayment.' },
+            { q: 'Why is tracking expenses important?', a: 'It reveals spending habits and helps identify areas to cut back.' },
+            { q: 'What is the difference between fixed and variable expenses?', a: 'Fixed expenses stay the same (rent), variable expenses change (groceries, entertainment).' },
+            { q: 'How often should you review your budget?', a: 'Monthly, at minimum. Life changes — so should your budget.' }
+          ]
+        },
+        {
+          title: 'Savings Goal Plan',
+          desc: 'Set a savings goal and outline a realistic plan to reach it.',
+          pdfData: null,
+          questions: [
+            { q: 'What is an emergency fund?', a: 'Money set aside for unexpected expenses like medical bills or car repairs — ideally 3-6 months of expenses.' },
+            { q: 'How do you calculate how much to save monthly?', a: 'Divide your goal amount by the number of months you want to save over.' },
+            { q: 'What is compound interest?', a: 'Interest earned on both the original amount and previously earned interest.' },
+            { q: 'Why is a savings account better than a stokvel for some goals?', a: 'It earns interest and is more liquid, but stokvels offer community support. Choose based on your needs.' }
+          ]
+        },
+        {
+          title: 'Credit Report Analysis',
+          desc: 'Review a sample credit report and identify areas for improvement.',
+          pdfData: null,
+          questions: [
+            { q: 'What is a credit score?', a: 'A number that represents your creditworthiness, based on your borrowing and repayment history.' },
+            { q: 'What factors affect your credit score?', a: 'Payment history, debt-to-credit ratio, length of credit history, new credit, and credit mix.' },
+            { q: 'How often can you check your credit report for free?', a: 'Once a year from each major credit bureau in South Africa.' },
+            { q: 'What should you do if you find an error on your report?', a: 'Dispute it with the credit bureau immediately, providing supporting documents.' }
+          ]
+        },
+        {
+          title: 'Emergency Fund Strategy',
+          desc: 'Calculate how much you need and how long it will take to save.',
+          pdfData: null,
+          questions: [
+            { q: 'Why is an emergency fund important?', a: 'It prevents you from going into debt when unexpected expenses arise.' },
+            { q: 'Where should you keep your emergency fund?', a: 'In a separate, easily accessible savings account — not invested in volatile assets.' },
+            { q: 'What is the difference between an emergency fund and savings?', a: 'An emergency fund is specifically for unplanned expenses; savings can be for goals like a holiday.' },
+            { q: 'How do you rebuild an emergency fund after using it?', a: 'Treat the repayment like a monthly bill and prioritise it until it\'s full again.' }
+          ]
+        }
+      ],
+      guides: [
+        { title: 'Budgeting Basics', desc: 'Step-by-step guide to creating and sticking to a budget.', pdfData: null },
+        { title: 'Understanding Credit Scores', desc: 'What affects your score and how to improve it.', pdfData: null },
+        { title: 'Savings & Investment 101', desc: 'Simple explanations of savings accounts, TFSAs, and more.', pdfData: null },
+        { title: 'Debt Repayment Planner', desc: 'A printable worksheet for tracking and paying off debt.', pdfData: null },
+        { title: 'Emergency Fund Calculator', desc: 'Work out exactly how much you need and how long to save.', pdfData: null },
+        { title: 'Financial Goal Setting Workbook', desc: 'Set SMART financial goals and track your progress.', pdfData: null }
+      ],
+      quiz: [
+        { q: 'What is the 50/30/20 rule?', options: ['A savings formula', 'A budgeting guideline', 'A tax rule', 'An investment strategy'], correct: 1 },
+        { q: 'What is compound interest?', options: ['Interest on the principal only', 'Interest on interest earned', 'A one-time fee', 'A type of loan'], correct: 1 },
+        { q: 'Which is an emergency fund for?', options: ['Holidays', 'Unexpected expenses', 'New clothes', 'Entertainment'], correct: 1 },
+        { q: 'What does APR stand for?', options: ['Annual Percentage Rate', 'Annual Payment Ratio', 'Applied Principal Rate', 'Average Price Return'], correct: 0 },
+        { q: 'What is a credit score used for?', options: ['Determining loan eligibility', 'Calculating taxes', 'Setting prices', 'Choosing insurance only'], correct: 0 },
+        { q: 'Which method pays off smallest debts first?', options: ['Avalanche', 'Snowball', 'Consolidation', 'Refinancing'], correct: 1 },
+        { q: 'What is a TFSA?', options: ['Tax-Free Savings Account', 'Total Financial Savings Account', 'Taxable Fund Savings Account', 'Temporary Financial Support Account'], correct: 0 },
+        { q: 'How many months of expenses should an emergency fund ideally cover?', options: ['1 month', '3-6 months', '12 months', '2 years'], correct: 1 },
+        { q: 'What is diversification?', options: ['Putting all money in one stock', 'Spreading investments', 'Saving only in cash', 'Avoiding all risk'], correct: 1 },
+        { q: 'What is the first step in creating a budget?', options: ['Spend first', 'Track income and expenses', 'Invest in stocks', 'Open a credit card'], correct: 1 }
+      ]
+    },
+
+    'webdev': {
+      title: 'Web Development Basics',
+      assignments: [
+        {
+          title: 'HTML Structure Exercise',
+          desc: 'Build a semantic HTML page for a personal profile.',
+          pdfData: null,
+          questions: [
+            { q: 'What does semantic HTML mean?', a: 'Using tags that describe their meaning (header, nav, main, footer) rather than generic divs.' },
+            { q: 'What is the purpose of the <head> tag?', a: 'It contains metadata, links to stylesheets, and the page title — not visible content.' },
+            { q: 'What is the difference between <ol> and <ul>?', a: '<ol> creates an ordered (numbered) list; <ul> creates an unordered (bulleted) list.' },
+            { q: 'Why is alt text important on images?', a: 'It describes the image for screen readers and appears if the image fails to load.' }
+          ]
+        },
+        {
+          title: 'CSS Styling Challenge',
+          desc: 'Style your HTML page with colours, fonts, and layout.',
+          pdfData: null,
+          questions: [
+            { q: 'What are the three ways to apply CSS?', a: 'Inline, internal (in <style>), and external (linked .css file).' },
+            { q: 'What is the box model?', a: 'Content, padding, border, and margin — the four layers of every HTML element.' },
+            { q: 'What is the difference between class and ID selectors?', a: 'A class (.) can be reused; an ID (#) must be unique per page.' },
+            { q: 'How do you centre a div horizontally?', a: 'Set a width and use margin: 0 auto; or use flexbox with justify-content: center.' }
+          ]
+        },
+        {
+          title: 'Responsive Layout',
+          desc: 'Make your page mobile-friendly using Flexbox or Grid.',
+          pdfData: null,
+          questions: [
+            { q: 'What is responsive design?', a: 'Designing web pages to adapt to different screen sizes and devices.' },
+            { q: 'What is a media query?', a: 'A CSS rule that applies styles only when certain conditions (like screen width) are met.' },
+            { q: 'What is the difference between Flexbox and Grid?', a: 'Flexbox is one-dimensional (row or column); Grid is two-dimensional (rows and columns).' },
+            { q: 'Why is mobile-first design recommended?', a: 'It ensures the core experience works on small screens and scales up gracefully.' }
+          ]
+        },
+        {
+          title: 'JavaScript Interaction',
+          desc: 'Add a button that changes text when clicked.',
+          pdfData: null,
+          questions: [
+            { q: 'What is the DOM?', a: 'The Document Object Model — a tree representation of the HTML page that JavaScript can manipulate.' },
+            { q: 'How do you select an element in JavaScript?', a: 'Using document.querySelector() or document.getElementById().' },
+            { q: 'What is an event listener?', a: 'A function that waits for a specific action (click, keypress) and responds to it.' },
+            { q: 'What is the difference between let and const?', a: 'let allows reassignment; const creates a variable that cannot be reassigned.' }
+          ]
+        }
+      ],
+      guides: [
+        { title: 'HTML Cheat Sheet', desc: 'All common HTML tags with examples.', pdfData: null },
+        { title: 'CSS Flexbox Guide', desc: 'Visual guide to Flexbox properties and use cases.', pdfData: null },
+        { title: 'JavaScript Basics', desc: 'Variables, functions, and events explained simply.', pdfData: null },
+        { title: 'Free Code Editor Setup', desc: 'Install VS Code and useful extensions.', pdfData: null },
+        { title: 'Responsive Design Checklist', desc: 'Ensure your site looks great on every device.', pdfData: null },
+        { title: 'Git & GitHub for Beginners', desc: 'Version control essentials for every developer.', pdfData: null }
+      ],
+      quiz: [
+        { q: 'What does HTML stand for?', options: ['Hyper Trainer Marking Language', 'HyperText Markup Language', 'HyperText Machine Language', 'Home Tool Markup Language'], correct: 1 },
+        { q: 'Which CSS property changes text colour?', options: ['font-color', 'text-color', 'color', 'foreground'], correct: 2 },
+        { q: 'Which HTML tag creates a hyperlink?', options: ['<link>', '<a>', '<href>', '<url>'], correct: 1 },
+        { q: 'What does CSS stand for?', options: ['Creative Style Sheets', 'Cascading Style Sheets', 'Computer Styled Sections', 'Colourful Style Sheets'], correct: 1 },
+        { q: 'Which JavaScript keyword declares a variable?', options: ['var', 'let', 'const', 'All of the above'], correct: 3 },
+        { q: 'What does the DOM stand for?', options: ['Data Object Model', 'Document Object Model', 'Digital Ordinance Model', 'Document Orientation Model'], correct: 1 },
+        { q: 'Which is used for responsive design?', options: ['Media queries', 'Font tags', 'Tables', 'Inline styles only'], correct: 0 },
+        { q: 'What is the correct file extension for a CSS file?', options: ['.html', '.css', '.js', '.cs'], correct: 1 },
+        { q: 'Which tag creates a numbered list?', options: ['<ul>', '<ol>', '<li>', '<list>'], correct: 1 },
+        { q: 'What does git commit do?', options: ['Uploads to server', 'Saves changes locally', 'Deletes files', 'Creates a new branch'], correct: 1 }
+      ]
+    },
+
+    'mindfulness': {
+      title: 'Mindfulness & Stress Reduction',
+      assignments: [
+        {
+          title: 'Daily Breathing Log',
+          desc: 'Practice 5 minutes of mindful breathing daily for a week and log your experience.',
+          pdfData: null,
+          questions: [
+            { q: 'What is mindful breathing?', a: 'Focusing attention on the breath without judgment, anchoring you to the present moment.' },
+            { q: 'How does breathing reduce stress?', a: 'Slow, deep breathing activates the parasympathetic nervous system, calming the body.' },
+            { q: 'What should you do when your mind wanders?', a: 'Gently notice it and return your attention to the breath — without self-criticism.' },
+            { q: 'How long should a beginner practice?', a: 'Start with 5 minutes daily and gradually increase as comfort grows.' }
+          ]
+        },
+        {
+          title: 'Body Scan Exercise',
+          desc: 'Complete a guided body scan and write a short reflection.',
+          pdfData: null,
+          questions: [
+            { q: 'What is a body scan?', a: 'A mindfulness practice that involves systematically paying attention to sensations in each part of the body.' },
+            { q: 'What are the benefits of a body scan?', a: 'It releases tension, improves body awareness, and reduces anxiety.' },
+            { q: 'How long does a body scan take?', a: 'Typically 10-20 minutes, but even 5 minutes can be beneficial.' },
+            { q: 'What should you do if you feel discomfort?', a: 'Acknowledge it without judgment, breathe into it, and continue the scan at your own pace.' }
+          ]
+        },
+        {
+          title: 'Mindful Walking',
+          desc: 'Take a 10-minute mindful walk and note what you observed.',
+          pdfData: null,
+          questions: [
+            { q: 'What is mindful walking?', a: 'Walking with full awareness of your body, breath, and surroundings.' },
+            { q: 'How is it different from normal walking?', a: 'Normal walking is often automatic; mindful walking is intentional and present.' },
+            { q: 'What can you focus on during a mindful walk?', a: 'The sensation of your feet on the ground, your breath, sounds, and sights around you.' },
+            { q: 'Why is mindful walking good for beginners?', a: 'It\'s easier than sitting meditation for people who find stillness difficult.' }
+          ]
+        },
+        {
+          title: 'Stress Trigger Journal',
+          desc: 'Identify three stress triggers and a mindfulness response for each.',
+          pdfData: null,
+          questions: [
+            { q: 'What is a stress trigger?', a: 'A situation, person, or thought that causes a stress response in your body and mind.' },
+            { q: 'How can mindfulness help with triggers?', a: 'It creates space between the trigger and your reaction, allowing a calmer response.' },
+            { q: 'What is the STOP technique?', a: 'Stop, Take a breath, Observe, Proceed — a quick mindfulness tool for stressful moments.' },
+            { q: 'Why is journaling helpful?', a: 'It increases self-awareness and helps identify patterns in your stress responses.' }
+          ]
+        }
+      ],
+      guides: [
+        { title: 'Beginner Meditation Guide', desc: 'Step-by-step instructions for your first meditation.', pdfData: null },
+        { title: 'Stress Relief Techniques', desc: 'Quick 2-minute exercises for stressful moments.', pdfData: null },
+        { title: 'Sleep & Mindfulness', desc: 'How mindfulness improves sleep quality.', pdfData: null },
+        { title: 'Gratitude Practice Workbook', desc: 'Daily prompts to build a gratitude habit.', pdfData: null },
+        { title: 'Mindful Breathing Audio Scripts', desc: 'Guided scripts you can record or follow.', pdfData: null },
+        { title: 'Mindfulness Journal Template', desc: 'Printable template for daily reflections.', pdfData: null }
+      ],
+      quiz: [
+        { q: 'What is mindfulness?', options: ['Thinking about the future', 'Paying attention to the present moment', 'Ignoring emotions', 'Sleeping more'], correct: 1 },
+        { q: 'How long should a beginner meditate?', options: ['2 hours', '5-10 minutes', '1 hour', '30 minutes minimum'], correct: 1 },
+        { q: 'What is a body scan?', options: ['A medical test', 'A mindfulness technique', 'A type of yoga', 'A breathing exercise'], correct: 1 },
+        { q: 'Which is a benefit of mindfulness?', options: ['Increased stress', 'Reduced anxiety', 'Less focus', 'Poor sleep'], correct: 1 },
+        { q: 'What does "being present" mean?', options: ['Being on time', 'Focusing on now', 'Giving gifts', 'Attending meetings'], correct: 1 },
+        { q: 'What is the STOP technique?', options: ['A breathing pattern', 'A mindfulness tool', 'A yoga pose', 'A type of meditation'], correct: 1 },
+        { q: 'What is gratitude practice?', options: ['Complaining daily', 'Noting things you are thankful for', 'Ignoring emotions', 'A form of exercise'], correct: 1 },
+        { q: 'What is mindful eating?', options: ['Eating quickly', 'Paying attention to the eating experience', 'Skipping meals', 'Eating while watching TV'], correct: 1 },
+        { q: 'How does mindfulness help with stress?', options: ['Increases stress', 'Creates space between trigger and reaction', 'Makes you forget problems', 'Avoids all emotions'], correct: 1 },
+        { q: 'What should you do when your mind wanders?', options: ['Get frustrated', 'Gently return to the present', 'Give up', 'Try harder'], correct: 1 }
+      ]
+    }
+  };
+
+  let currentCourseId = null;
+  let currentCourse = null;
+  let quizPassed = false;
+  let currentStudentName = 'Student';
+
+  // ============================================================
+  // ADMIN LOGIN
+  // ============================================================
+  document.getElementById('adminTrigger').addEventListener('click', openAdminLogin);
+  document.getElementById('logoTrigger').addEventListener('dblclick', openAdminLogin);
+
+  function openAdminLogin() {
+    if (isAdminLoggedIn) {
+      // Toggle admin tab visibility
+      toggleAdminTab();
+      return;
+    }
+    document.getElementById('adminLoginModal').classList.add('active');
+    document.getElementById('adminLoginError').classList.remove('show');
+    document.getElementById('adminUsername').value = '';
+    document.getElementById('adminPassword').value = '';
+    setTimeout(() => document.getElementById('adminUsername').focus(), 100);
+  }
+
+  function closeAdminLogin() {
+    document.getElementById('adminLoginModal').classList.remove('active');
+  }
+
+  function attemptAdminLogin() {
+    const username = document.getElementById('adminUsername').value.trim();
+    const password = document.getElementById('adminPassword').value.trim();
+
+    if (username === ADMIN_CREDENTIALS.username && password === ADMIN_CREDENTIALS.password) {
+      isAdminLoggedIn = true;
+      closeAdminLogin();
+      toggleAdminTab();
+      if (currentCourse) {
+        switchTab(document.getElementById('adminTabBtn'), 'tab-admin');
       }
-      ctx.restore();
-    }
-  }
-  function resizeCanvas() { width = window.innerWidth; height = window.innerHeight; canvas.width = width; canvas.height = height; robots = []; for (let i=0;i<18;i++) robots.push(new Robot(Math.random()*width, Math.random()*height, 14+Math.random()*14, (Math.random()-0.5)*0.9, (Math.random()-0.5)*0.9, ['robot','drone','gear'][Math.floor(Math.random()*3)])); }
-  function animateRobots() { ctx.clearRect(0,0,width,height); robots.forEach(r => { r.update(); r.draw(ctx); }); requestAnimationFrame(animateRobots); }
-  window.addEventListener('resize', resizeCanvas); resizeCanvas(); animateRobots();
-
-  // === WHATSAPP API (PERSISTENT STORAGE) ===
-  const ADMIN_PHONE = '27632716478';
-  let callmebotApiKey = localStorage.getItem('manono_callmebot_api_key') || '';
-
-  function initWhatsAppQR() {
-    const qrDiv = document.getElementById('whatsappQR');
-    if (qrDiv && typeof QRCode !== 'undefined') {
-      qrDiv.innerHTML = '';
-      new QRCode(qrDiv, { text: `https://wa.me/${ADMIN_PHONE}?text=Hello%20Mihle`, width: 180, height: 180, colorDark: "#f5b81b", colorLight: "#ffffff" });
-    }
-  }
-
-  async function sendViaCallMeBot(message, visitorName = "Website Visitor") {
-    if (!callmebotApiKey) return false;
-    const formattedMsg = encodeURIComponent(`📨 *New Message from Manono Projects*\n\n👤 From: ${visitorName}\n💬 Message: ${message}\n\n— Reply to this message —`);
-    const apiUrl = `https://api.callmebot.com/whatsapp.php?phone=${ADMIN_PHONE}&text=${formattedMsg}&apikey=${callmebotApiKey}`;
-    try {
-      const response = await fetch(apiUrl);
-      const result = await response.text();
-      return result.includes("OK") || result.includes("success") || result.includes("Message");
-    } catch (error) { return false; }
-  }
-
-  async function forwardToAdmin(message, visitorName = "Website Visitor") {
-    let messages = JSON.parse(localStorage.getItem('manono_whatsapp_messages') || '[]');
-    messages.unshift({ id: Date.now(), from: visitorName, message: message, time: new Date().toLocaleString() });
-    if (messages.length > 50) messages.pop();
-    localStorage.setItem('manono_whatsapp_messages', JSON.stringify(messages));
-    
-    if (callmebotApiKey) {
-      const success = await sendViaCallMeBot(message, visitorName);
-      if (success) { showToast("✅ Message sent to your WhatsApp!"); return true; }
-      else { showToast("⚠️ API error"); return false; }
+      alert('Administrator login successful. The Admin Panel tab is now visible.');
     } else {
-      showToast("📱 Opening WhatsApp...");
-      window.open(`https://wa.me/${ADMIN_PHONE}?text=${encodeURIComponent(`Message from ${visitorName}: ${message}`)}`, '_blank');
-      return false;
+      document.getElementById('adminLoginError').classList.add('show');
+      document.getElementById('adminPassword').value = '';
+      document.getElementById('adminPassword').focus();
     }
   }
 
-  // Chat UI
-  const chatToggle = document.getElementById('chatToggle');
-  const chatBox = document.getElementById('chatBox');
-  const chatMessages = document.getElementById('chatMessages');
-  const chatInput = document.getElementById('chatInput');
-  const sendBtn = document.getElementById('sendChatBtn');
-  
-  function showToast(msg) {
-    const toast = document.createElement('div');
-    toast.style.position = 'fixed'; toast.style.bottom = '80px'; toast.style.right = '20px';
-    toast.style.background = '#1a1a1a'; toast.style.borderLeft = '4px solid #f5b81b';
-    toast.style.padding = '0.6rem 1rem'; toast.style.borderRadius = '10px'; toast.style.zIndex = '300';
-    toast.style.color = '#f5b81b'; toast.style.fontSize = '0.8rem';
-    toast.innerHTML = `<i class="fas fa-info-circle"></i> ${msg}`;
-    document.body.appendChild(toast);
-    setTimeout(() => toast.remove(), 3000);
+  function toggleAdminTab() {
+    const adminTab = document.getElementById('adminTabBtn');
+    if (isAdminLoggedIn) {
+      adminTab.classList.remove('hidden');
+    } else {
+      adminTab.classList.add('hidden');
+    }
   }
-  
-  function addMessage(text, isUser) {
-    const div = document.createElement('div');
-    div.className = `message ${isUser ? 'user' : 'bot'}`;
-    div.innerHTML = isUser ? `<i class="fas fa-user"></i> ${escapeHtml(text)}` : `<i class="fas fa-robot"></i> ${escapeHtml(text)}`;
-    chatMessages.appendChild(div);
-    chatMessages.scrollTop = chatMessages.scrollHeight;
-  }
-  
-  async function handleSendMessage() {
-    const msg = chatInput.value.trim();
-    if (!msg) return;
-    addMessage(msg, true);
-    addMessage("🤖 Forwarding to Mihle's WhatsApp...", false);
-    chatInput.value = '';
-    await forwardToAdmin(msg, "Website Visitor");
-    setTimeout(() => {
-      if (callmebotApiKey) addMessage("✅ Message delivered! Mihle will respond shortly.", false);
-      else addMessage("📱 WhatsApp opened. Please send the message.", false);
-    }, 1500);
-  }
-  
-  sendBtn.addEventListener('click', handleSendMessage);
-  chatInput.addEventListener('keypress', (e) => { if (e.key === 'Enter') handleSendMessage(); });
-  chatToggle.addEventListener('click', () => chatBox.classList.toggle('open'));
-  document.querySelectorAll('.quick-btn').forEach(btn => {
-    btn.addEventListener('click', () => { chatInput.value = btn.getAttribute('data-msg'); handleSendMessage(); });
-  });
-  
-  function escapeHtml(str) { if(!str) return ''; return str.replace(/[&<>]/g, m => ({'&':'&amp;','<':'&lt;','>':'&gt;'}[m])); }
-  
-  function updateApiStatus() {
-    const statusDiv = document.getElementById('apiStatus');
-    if (statusDiv) {
-      if (callmebotApiKey) {
-        statusDiv.innerHTML = '<i class="fas fa-check-circle"></i> ✅ WhatsApp API ACTIVE! Messages go directly to your phone.';
-        statusDiv.style.background = 'rgba(76, 175, 80, 0.2)';
-      } else {
-        statusDiv.innerHTML = '<i class="fas fa-exclamation-triangle"></i> ⚠️ API not configured. Click "Get API Key" to activate.';
+
+  // Close admin login on Escape
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') {
+      const loginModal = document.getElementById('adminLoginModal');
+      if (loginModal.classList.contains('active')) {
+        closeAdminLogin();
       }
     }
-  }
-
-  // === PROJECT MANAGEMENT (PERSISTENT STORAGE) ===
-  let projects = [];
-  function loadProjects() {
-    const stored = localStorage.getItem('manono_projects');
-    projects = stored ? JSON.parse(stored) : [];
-    renderPublicProjects(); updateProjectCount();
-  }
-  function saveProjects() { localStorage.setItem('manono_projects', JSON.stringify(projects)); renderPublicProjects(); updateProjectCount(); }
-  function updateProjectCount() { const c = document.getElementById('projectCount'); if(c) c.innerText = projects.length; }
-  function renderPublicProjects() {
-    const grid = document.getElementById('projectsGrid');
-    if(!grid) return;
-    if(projects.length === 0) { grid.innerHTML = '<div class="empty-state"><i class="fas fa-folder-open"></i><p>No projects yet. Login as admin to add your work.</p></div>'; return; }
-    grid.innerHTML = '';
-    projects.forEach(p => {
-      const card = document.createElement('div'); card.className = 'project-card';
-      card.innerHTML = `<div class="card-header"><div class="project-icon-bg"><i class="fas fa-microchip"></i></div><div class="project-category">FEATURED</div></div><div class="project-info"><h3>${escapeHtml(p.name)}</h3><p>${escapeHtml(p.purpose)}</p><a href="${escapeHtml(p.link)}" target="_blank" class="project-link">View project <i class="fas fa-arrow-right"></i></a></div>`;
-      grid.appendChild(card);
-    });
-  }
-  function renderAdminList() {
-    const container = document.getElementById('adminProjectsList');
-    if(!container) return;
-    if(projects.length === 0) { container.innerHTML = '<p style="color:#f5b81b; text-align:center;">No projects yet.</p>'; return; }
-    container.innerHTML = '';
-    projects.forEach((p, i) => {
-      const div = document.createElement('div'); div.className = 'project-item';
-      div.innerHTML = `<div style="flex:1"><strong style="color:#f5b81b;">${escapeHtml(p.name)}</strong><br><small>${escapeHtml(p.purpose.substring(0,60))}...</small><br><a href="${escapeHtml(p.link)}" target="_blank" style="font-size:0.65rem;color:#f5b81b;">${escapeHtml(p.link.substring(0,40))}</a></div><button class="delete-project" data-index="${i}"><i class="fas fa-trash"></i> Del</button>`;
-      container.appendChild(div);
-    });
-    document.querySelectorAll('.delete-project').forEach(btn => btn.addEventListener('click', (e) => { const idx = parseInt(btn.getAttribute('data-index')); if(confirm('Delete project?')) { projects.splice(idx,1); saveProjects(); renderAdminList(); } }));
-  }
-
-  // Modal Logic
-  const loginModal = document.getElementById('loginModal'), adminModal = document.getElementById('adminModal'), qrModal = document.getElementById('adminQRModal');
-  const openAdmin = document.getElementById('openAdminBtn'), closeLogin = document.getElementById('closeLoginModal'), closeAdmin = document.getElementById('closeAdminModal'), closeQR = document.getElementById('closeQRModal');
-  const verify = document.getElementById('verifyAdminBtn'), passInp = document.getElementById('adminPassword'), saveProj = document.getElementById('saveProjectBtn');
-  const pairBtn = document.getElementById('pairWhatsAppBtn'), setupCallMeBot = document.getElementById('setupCallMeBotBtn'), saveApiKey = document.getElementById('saveApiKeyBtn');
-  
-  function openModal(m) { m.style.display = 'flex'; }
-  function closeModal(m) { m.style.display = 'none'; }
-  
-  openAdmin?.addEventListener('click', (e) => { e.preventDefault(); openModal(loginModal); passInp.value = ''; });
-  closeLogin?.addEventListener('click', () => closeModal(loginModal));
-  closeAdmin?.addEventListener('click', () => closeModal(adminModal));
-  closeQR?.addEventListener('click', () => closeModal(qrModal));
-  window.addEventListener('click', (e) => { if(e.target === loginModal) closeModal(loginModal); if(e.target === adminModal) closeModal(adminModal); if(e.target === qrModal) closeModal(qrModal); });
-  
-  verify?.addEventListener('click', () => { if(passInp.value === 'Manono@2') { closeModal(loginModal); renderAdminList(); openModal(adminModal); } else alert('Wrong password'); });
-  pairBtn?.addEventListener('click', () => { closeModal(adminModal); initWhatsAppQR(); updateApiStatus(); openModal(qrModal); });
-  setupCallMeBot?.addEventListener('click', () => { window.open(`https://wa.me/${ADMIN_PHONE}?text=${encodeURIComponent("I allow callmebot to send me messages for my Manono Projects website")}`, '_blank'); alert("1. Send the message to your own WhatsApp number\n2. You will receive an API key\n3. Copy and paste it below"); });
-  saveApiKey?.addEventListener('click', () => { const apiKey = document.getElementById('apiKeyInput').value.trim(); if(apiKey) { callmebotApiKey = apiKey; localStorage.setItem('manono_callmebot_api_key', apiKey); updateApiStatus(); alert("✅ API Key saved! Messages will now be sent directly to your WhatsApp."); showToast("WhatsApp API activated!"); } else alert("Please enter a valid API key"); });
-  saveProj?.addEventListener('click', () => {
-    const name = document.getElementById('projectName').value.trim();
-    const link = document.getElementById('projectLink').value.trim();
-    const purpose = document.getElementById('projectPurpose').value.trim();
-    if(!name || !link || !purpose) { alert('Fill all fields'); return; }
-    if(!link.startsWith('http')) { alert('Valid URL required (http:// or https://)'); return; }
-    projects.push({ name, link, purpose });
-    saveProjects();
-    document.getElementById('projectName').value = ''; document.getElementById('projectLink').value = ''; document.getElementById('projectPurpose').value = '';
-    renderAdminList();
-    alert('✅ Project added successfully!');
   });
-  
-  loadProjects();
-  updateApiStatus();
+
+  // ============================================================
+  // OPEN COURSE MODAL
+  // ============================================================
+  function openCourse(courseId) {
+    currentCourseId = courseId;
+    currentCourse = courses[courseId];
+    quizPassed = false;
+
+    document.getElementById('modalCourseTitle').textContent = currentCourse.title;
+
+    renderAssignments();
+    renderGuides();
+    renderQuiz();
+    updateCertificateView();
+
+    // Reset quiz result
+    document.getElementById('quizResult').className = 'quiz-result';
+    document.getElementById('quizResult').innerHTML = '';
+    document.getElementById('quizForm').reset();
+
+    // Reset facilitator form
+    document.getElementById('facilitatorSuccess').style.display = 'none';
+    document.getElementById('facilitatorForm').reset();
+
+    // Reset admin status
+    document.getElementById('adminStatus').style.display = 'none';
+
+    // Ensure admin tab visibility matches login state
+    toggleAdminTab();
+
+    // Reset to first tab
+    const firstTab = document.querySelector('.modal-tab');
+    switchTab(firstTab, 'tab-assignments');
+
+    // Show modal
+    document.getElementById('courseModal').classList.add('active');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function renderAssignments() {
+    const assignmentList = document.getElementById('assignmentList');
+    assignmentList.innerHTML = currentCourse.assignments.map((a, i) => `
+      <div class="assignment-card">
+        <h4><span class="badge">Assignment ${i + 1}</span> ${a.title}</h4>
+        <p>${a.desc}</p>
+        ${a.pdfData ? `
+          <div style="margin-bottom: 16px;">
+            <button class="lesson-action" onclick="downloadAssignmentPDF(${i})" style="background: var(--danger);">
+              <i class="fas fa-file-pdf" style="margin-right: 6px;"></i> Download Assignment PDF
+            </button>
+          </div>
+        ` : ''}
+        ${a.questions.map((qa, j) => `
+          <div class="qa-block">
+            <div class="qa-question"><span class="q-mark">Q${j + 1}.</span> ${qa.q}</div>
+            <div class="qa-answer"><span class="a-mark">A.</span> ${qa.a}</div>
+          </div>
+        `).join('')}
+      </div>
+    `).join('');
+  }
+
+  function renderGuides() {
+    const guideList = document.getElementById('guideList');
+    guideList.innerHTML = currentCourse.guides.map((g, i) => `
+      <div class="lesson-item">
+        <div class="lesson-num" style="background: var(--accent); color: #1e2b3a;">${i + 1}</div>
+        <div style="flex:1;">
+          <h4>${g.title} ${g.pdfData ? '<span class="pdf-badge">PDF</span>' : ''}</h4>
+          <p>${g.desc}</p>
+        </div>
+        <button class="lesson-action" onclick="downloadGuide('${currentCourseId}', ${i})">
+          <i class="fas fa-file-pdf" style="margin-right: 6px;"></i> Download
+        </button>
+      </div>
+    `).join('');
+  }
+
+  function renderQuiz() {
+    const quizQuestions = document.getElementById('quizQuestions');
+    quizQuestions.innerHTML = currentCourse.quiz.map((q, i) => `
+      <div class="quiz-question">
+        <h4>${i + 1}. ${q.q}</h4>
+        ${q.options.map((opt, j) => `
+          <label class="quiz-option" onclick="selectOption(this)">
+            <input type="radio" name="q${i}" value="${j}">
+            <span>${opt}</span>
+          </label>
+        `).join('')}
+      </div>
+    `).join('');
+  }
+
+  function closeCourse() {
+    document.getElementById('courseModal').classList.remove('active');
+    document.body.style.overflow = '';
+  }
+
+  document.getElementById('courseModal').addEventListener('click', function(e) {
+    if (e.target === this) closeCourse();
+  });
+
+  // ============================================================
+  // TABS
+  // ============================================================
+  function switchTab(tabBtn, tabId) {
+    document.querySelectorAll('.modal-tab').forEach(t => t.classList.remove('active'));
+    document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+    tabBtn.classList.add('active');
+    document.getElementById(tabId).classList.add('active');
+  }
+
+  // ============================================================
+  // QUIZ
+  // ============================================================
+  function selectOption(label) {
+    const name = label.querySelector('input').name;
+    document.querySelectorAll(`input[name="${name}"]`).forEach(inp => {
+      inp.closest('.quiz-option').classList.remove('selected');
+    });
+    label.classList.add('selected');
+  }
+
+  function submitQuiz(e) {
+    e.preventDefault();
+    if (!currentCourse) return;
+
+    const total = currentCourse.quiz.length;
+    let correct = 0;
+
+    currentCourse.quiz.forEach((q, i) => {
+      const selected = document.querySelector(`input[name="q${i}"]:checked`);
+      if (selected && parseInt(selected.value) === q.correct) {
+        correct++;
+      }
+    });
+
+    const percentage = Math.round((correct / total) * 100);
+    const resultDiv = document.getElementById('quizResult');
+
+    if (percentage >= 80) {
+      quizPassed = true;
+      resultDiv.className = 'quiz-result pass';
+      resultDiv.innerHTML = `
+        <h3><i class="fas fa-check-circle"></i> Congratulations — You Passed!</h3>
+        <p>You scored <strong>${percentage}%</strong> (${correct}/${total} correct). An administrator will issue your certificate shortly.</p>
+        <button class="btn btn-accent" onclick="switchTab(document.querySelectorAll('.modal-tab')[4], 'tab-certificate')">
+          <i class="fas fa-certificate" style="margin-right: 6px;"></i> Go to Certificate
+        </button>
+      `;
+    } else {
+      quizPassed = false;
+      resultDiv.className = 'quiz-result fail';
+      resultDiv.innerHTML = `
+        <h3><i class="fas fa-times-circle"></i> Not Quite — Try Again</h3>
+        <p>You scored <strong>${percentage}%</strong> (${correct}/${total} correct). You need <strong>80%</strong> to pass. Review the study guides and try again.</p>
+        <button class="btn btn-primary" onclick="retryQuiz()">
+          <i class="fas fa-redo" style="margin-right: 6px;"></i> Retry Quiz
+        </button>
+      `;
+    }
+
+    resultDiv.style.display = 'block';
+    resultDiv.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    updateCertificateView();
+  }
+
+  function retryQuiz() {
+    document.getElementById('quizForm').reset();
+    document.querySelectorAll('.quiz-option').forEach(o => o.classList.remove('selected'));
+    document.getElementById('quizResult').className = 'quiz-result';
+    document.getElementById('quizResult').innerHTML = '';
+    document.getElementById('quizResult').style.display = 'none';
+    quizPassed = false;
+    updateCertificateView();
+  }
+
+  // ============================================================
+  // CERTIFICATE VIEW
+  // ============================================================
+  function updateCertificateView() {
+    const waiting = document.getElementById('certificateWaiting');
+    const ready = document.getElementById('certificateReady');
+    const lockedMsg = document.getElementById('certLockedMsg');
+
+    if (!quizPassed) {
+      waiting.classList.remove('hidden');
+      ready.classList.add('hidden');
+      lockedMsg.style.display = 'block';
+      return;
+    }
+
+    // Find an issued certificate for this student + course
+    const cert = issuedCertificates.find(c =>
+      c.courseId === currentCourseId &&
+      (c.studentName.toLowerCase() === currentStudentName.toLowerCase() ||
+       c.studentEmail.toLowerCase() === (document.getElementById('email')?.value || '').toLowerCase())
+    );
+
+    if (cert) {
+      // Certificate ready
+      waiting.classList.add('hidden');
+      ready.classList.remove('hidden');
+      document.getElementById('certName').textContent = cert.studentName;
+      document.getElementById('certCourse').textContent = cert.courseTitle;
+    } else {
+      // Still waiting for admin to issue
+      waiting.classList.remove('hidden');
+      ready.classList.add('hidden');
+      lockedMsg.style.display = 'none';
+    }
+  }
+
+  // ============================================================
+  // DOWNLOAD ASSIGNMENT PDF
+  // ============================================================
+  function downloadAssignmentPDF(index) {
+    const assignment = currentCourse.assignments[index];
+    if (!assignment.pdfData) {
+      alert('No PDF uploaded for this assignment yet.');
+      return;
+    }
+    const link = document.createElement('a');
+    link.href = assignment.pdfData;
+    link.download = `${assignment.title.replace(/\s+/g, '-')}.pdf`;
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  }
+
+  // ============================================================
+  // DOWNLOAD STUDY GUIDE
+  // ============================================================
+  function downloadGuide(courseId, guideIndex) {
+    const course = courses[courseId];
+    const guide = course.guides[guideIndex];
+
+    if (guide.pdfData) {
+      // Download admin-uploaded PDF
+      const link = document.createElement('a');
+      link.href = guide.pdfData;
+      link.download = `${guide.title.replace(/\s+/g, '-')}.pdf`;
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+      return;
+    }
+
+    // Fallback: generate HTML study guide
+    const pdfHTML = `
+      <!DOCTYPE html>
+      <html>
+      <head>
+        <meta charset="UTF-8">
+        <title>${guide.title} — SA Youth Learning</title>
+        <style>
+          body { font-family: 'Georgia', serif; max-width: 800px; margin: 40px auto; padding: 40px; color: #1e2b3a; line-height: 1.6; }
+          .header { text-align: center; border-bottom: 3px solid #1e4a6f; padding-bottom: 20px; margin-bottom: 30px; }
+          .header h1 { color: #1e4a6f; font-size: 2rem; margin-bottom: 8px; }
+          .header .brand { color: #e8b43a; font-weight: bold; letter-spacing: 2px; font-size: 0.9rem; text-transform: uppercase; }
+          .meta { background: #eef2f6; padding: 16px 24px; border-radius: 12px; margin-bottom: 30px; font-size: 0.95rem; }
+          .meta strong { color: #1e4a6f; }
+          h2 { color: #1e4a6f; margin-top: 30px; }
+          ul, ol { padding-left: 24px; }
+          li { margin-bottom: 8px; }
+          .footer { margin-top: 50px; padding-top: 20px; border-top: 1px solid #d9e2ec; text-align: center; font-size: 0.85rem; color: #4a5c6b; }
+          .tip { background: #f7e6c4; padding: 16px 20px; border-radius: 10px; margin: 20px 0; border-left: 4px solid #e8b43a; }
+        </style>
+      </head>
+      <body>
+        <div class="header">
+          <div class="brand">SA Youth Learning</div>
+          <h1>${guide.title}</h1>
+          <p>${guide.desc}</p>
+        </div>
+        <div class="meta">
+          <strong>Course:</strong> ${course.title}<br>
+          <strong>Module:</strong> Study Guide ${guideIndex + 1} of ${course.guides.length}<br>
+          <strong>Format:</strong> Self-paced learning material
+        </div>
+        <h2>1. Introduction</h2>
+        <p>Welcome to this study guide for <strong>${course.title}</strong>. This material supports your learning journey and prepares you for the final assessment.</p>
+        <h2>2. Key Learning Outcomes</h2>
+        <ul>
+          <li>Understand the core concepts of ${course.title.toLowerCase()}.</li>
+          <li>Apply practical techniques to real-world scenarios.</li>
+          <li>Build confidence through structured practice.</li>
+          <li>Prepare effectively for the final assessment (80% pass mark).</li>
+        </ul>
+        <h2>3. Study Notes</h2>
+        <p>This guide covers essential material for the module. Keep a notebook handy and apply what you learn as you go.</p>
+        <div class="tip">
+          <strong>Study Tip:</strong> Break your learning into 25-minute focused sessions with 5-minute breaks (Pomodoro Technique).
+        </div>
+        <h2>4. Practice Questions</h2>
+        <ol>
+          <li>What is the main focus of this module?</li>
+          <li>How can you apply these concepts in your daily life or future career?</li>
+          <li>Which techniques from this guide do you find most challenging, and why?</li>
+          <li>How will you measure your progress in this course?</li>
+        </ol>
+        <h2>5. Next Steps</h2>
+        <p>Once confident, move to the next guide. After all guides, take the final quiz. Score 80%+ to earn your certificate.</p>
+        <div class="footer">
+          <p>© 2026 SA Youth Learning — Empowering young South Africans through free education.</p>
+        </div>
+      </body>
+      </html>
+    `;
+
+    const blob = new Blob([pdfHTML], { type: 'text/html' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = `${guide.title.replace(/\s+/g, '-')}-SA-Youth-Learning.html`;
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+  }
+
+  // ============================================================
+  // FACILITATOR REQUEST
+  // ============================================================
+  function submitFacilitatorRequest(e) {
+    e.preventDefault();
+    const name = document.getElementById('facilitatorName').value.trim();
+    const email = document.getElementById('facilitatorEmail').value.trim();
+    const topic = document.getElementById('facilitatorTopic').value;
+    const message = document.getElementById('facilitatorMessage').value.trim();
+
+    if (!name || !email || !topic) {
+      alert('Please fill in all required fields.');
+      return;
+    }
+
+    document.getElementById('facilitatorSuccess').style.display = 'block';
+    document.getElementById('facilitatorForm').reset();
+
+    alert(`Facilitator request submitted!\n\nName: ${name}\nEmail: ${email}\nTopic: ${topic}\n${message ? 'Message: ' + message : ''}\n\nA facilitator will contact you within 48 hours.`);
+  }
+
+  // ============================================================
+  // ADMIN FUNCTIONS
+  // ============================================================
+  function readFileAsDataURL(file) {
+    return new Promise((resolve, reject) => {
+      const reader = new FileReader();
+      reader.onload = () => resolve(reader.result);
+      reader.onerror = reject;
+      reader.readAsDataURL(file);
+    });
+  }
+
+  async function adminUploadAssignment() {
+    if (!isAdminLoggedIn) {
+      showAdminStatus('You must be logged in as admin.', false);
+      return;
+    }
+
+    const courseId = document.getElementById('adminAssignmentCourse').value;
+    const title = document.getElementById('adminAssignmentTitle').value.trim();
+    const desc = document.getElementById('adminAssignmentDesc').value.trim();
+    const fileInput = document.getElementById('adminAssignmentPdf');
+
+    if (!title || !desc) {
+      showAdminStatus('Please provide an assignment title and description.', false);
+      return;
+    }
+
+    if (!fileInput.files.length) {
+      showAdminStatus('Please select a PDF file to upload.', false);
+      return;
+    }
+
+    const file = fileInput.files[0];
+    if (file.type !== 'application/pdf') {
+      showAdminStatus('Only PDF files are allowed.', false);
+      return;
+    }
+
+    try {
+      const dataUrl = await readFileAsDataURL(file);
+
+      courses[courseId].assignments.push({
+        title: title,
+        desc: desc,
+        pdfData: dataUrl,
+        questions: [
+          { q: 'What is the main objective of this assignment?', a: 'Refer to the uploaded PDF for detailed instructions and requirements.' }
+        ]
+      });
+
+      showAdminStatus(`Assignment "${title}" uploaded successfully to ${courses[courseId].title}!`, true);
+
+      document.getElementById('adminAssignmentTitle').value = '';
+      document.getElementById('adminAssignmentDesc').value = '';
+      document.getElementById('adminAssignmentPdf').value = '';
+
+      if (currentCourseId === courseId) {
+        currentCourse = courses[courseId];
+        renderAssignments();
+      }
+    } catch (err) {
+      showAdminStatus('Error reading file. Please try again.', false);
+    }
+  }
+
+  async function adminUploadGuide() {
+    if (!isAdminLoggedIn) {
+      showAdminStatus('You must be logged in as admin.', false);
+      return;
+    }
+
+    const courseId = document.getElementById('adminGuideCourse').value;
+    const title = document.getElementById('adminGuideTitle').value.trim();
+    const desc = document.getElementById('adminGuideDesc').value.trim();
+    const fileInput = document.getElementById('adminGuidePdf');
+
+    if (!title || !desc) {
+      showAdminStatus('Please provide a guide title and description.', false);
+      return;
+    }
+
+    if (!fileInput.files.length) {
+      showAdminStatus('Please select a PDF file to upload.', false);
+      return;
+    }
+
+    const file = fileInput.files[0];
+    if (file.type !== 'application/pdf') {
+      showAdminStatus('Only PDF files are allowed.', false);
+      return;
+    }
+
+    try {
+      const dataUrl = await readFileAsDataURL(file);
+
+      courses[courseId].guides.push({
+        title: title,
+        desc: desc,
+        pdfData: dataUrl
+      });
+
+      showAdminStatus(`Study guide "${title}" uploaded successfully to ${courses[courseId].title}!`, true);
+
+      document.getElementById('adminGuideTitle').value = '';
+      document.getElementById('adminGuideDesc').value = '';
+      document.getElementById('adminGuidePdf').value = '';
+
+      if (currentCourseId === courseId) {
+        currentCourse = courses[courseId];
+        renderGuides();
+      }
+    } catch (err) {
+      showAdminStatus('Error reading file. Please try again.', false);
+    }
+  }
+
+  async function adminIssueCertificate() {
+    if (!isAdminLoggedIn) {
+      showAdminStatus('You must be logged in as admin.', false);
+      return;
+    }
+
+    const courseId = document.getElementById('adminCertCourse').value;
+    const studentName = document.getElementById('adminCertStudentName').value.trim();
+    const studentEmail = document.getElementById('adminCertStudentEmail').value.trim();
+    const fileInput = document.getElementById('adminCertPdf');
+
+    if (!studentName || !studentEmail) {
+      showAdminStatus('Please provide the student name and email.', false);
+      return;
+    }
+
+    if (!fileInput.files.length) {
+      showAdminStatus('Please select a certificate PDF to upload.', false);
+      return;
+    }
+
+    const file = fileInput.files[0];
+    if (file.type !== 'application/pdf') {
+      showAdminStatus('Only PDF files are allowed.', false);
+      return;
+    }
+
+    try {
+      const dataUrl = await readFileAsDataURL(file);
+
+      issuedCertificates.push({
+        studentName: studentName,
+        studentEmail: studentEmail,
+        courseId: courseId,
+        courseTitle: courses[courseId].title,
+        fileName: file.name,
+        dataUrl: dataUrl,
+        issuedAt: new Date().toLocaleDateString('en-ZA')
+      });
+
+      showAdminStatus(`Certificate issued to ${studentName} for ${courses[courseId].title}!`, true);
+
+      document.getElementById('adminCertStudentName').value = '';
+      document.getElementById('adminCertStudentEmail').value = '';
+      document.getElementById('adminCertPdf').value = '';
+
+      refreshIssuedCerts();
+    } catch (err) {
+      showAdminStatus('Error reading file. Please try again.', false);
+    }
+  }
+
+  function refreshIssuedCerts() {
+    const list = document.getElementById('issuedCertList');
+    if (!issuedCertificates.length) {
+      list.innerHTML = '<p style="color:#7f96ab; font-size:0.85rem;">No certificates issued yet.</p>';
+      return;
+    }
+
+    list.innerHTML = issuedCertificates.map((c, i) => `
+      <div style="background: rgba(255,255,255,0.06); border-radius: 10px; padding: 12px; margin-bottom: 8px; font-size: 0.85rem;">
+        <strong style="color: var(--accent);">${c.studentName}</strong><br>
+        <span style="color: #b0c4d9;">${c.courseTitle}</span><br>
+        <span style="color: #7f96ab; font-size: 0.75rem;">Issued: ${c.issuedAt}</span>
+      </div>
+    `).join('');
+  }
+
+  function showAdminStatus(message, success) {
+    const status = document.getElementById('adminStatus');
+    status.textContent = message;
+    status.className = 'admin-status ' + (success ? 'success' : 'error');
+    status.style.display = 'block';
+
+    setTimeout(() => {
+      status.style.display = 'none';
+    }, 5000);
+  }
+
+  // ============================================================
+  // DOWNLOAD ADMIN CERTIFICATE (student side)
+  // ============================================================
+  function downloadAdminCertificate() {
+    if (!quizPassed) {
+      alert('You must pass the quiz with 80% or higher before downloading your certificate.');
+      return;
+    }
+
+    const cert = issuedCertificates.find(c =>
+      c.courseId === currentCourseId &&
+      (c.studentName.toLowerCase() === currentStudentName.toLowerCase() ||
+       c.studentEmail.toLowerCase() === (document.getElementById('email')?.value || '').toLowerCase())
+    );
+
+    if (!cert) {
+      alert('Your certificate has not been issued yet. Please wait for an administrator to upload it.');
+      return;
+    }
+
+    const link = document.createElement('a');
+    link.href = cert.dataUrl;
+    link.download = `${cert.studentName.replace(/\s+/g, '-')}-${cert.courseTitle.replace(/\s+/g, '-')}-Certificate.pdf`;
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  }
+
+  // ============================================================
+  // REGISTRATION
+  // ============================================================
+  function handleRegistration(e) {
+    e.preventDefault();
+    const name = document.getElementById('fullname').value.trim();
+    const email = document.getElementById('email').value.trim();
+    const ref = document.getElementById('paymentRef').value.trim();
+
+    if (name) {
+      currentStudentName = name;
+    }
+
+    alert(`Welcome, ${name}! Your account has been created.\n\nEmail: ${email}\n${ref ? 'Payment reference: ' + ref + '\n\n' : ''}You can now browse courses and start learning. Score 80%+ on any quiz to request your certificate.`);
+    document.getElementById('registrationForm').reset();
+  }
+
+  // ============================================================
+  // KEYBOARD & SCROLL
+  // ============================================================
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') {
+      const modal = document.getElementById('courseModal');
+      if (modal.classList.contains('active')) closeCourse();
+    }
+  });
+
+  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function(e) {
+      const href = this.getAttribute('href');
+      if (href === '#') return;
+      const target = document.querySelector(href);
+      if (target) {
+        e.preventDefault();
+        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    });
+  });
+
+  // Initialize issued cert list when admin tab opens
+  document.getElementById('adminTabBtn').addEventListener('click', refreshIssuedCerts);
 </script>
+
 </body>
 </html>
